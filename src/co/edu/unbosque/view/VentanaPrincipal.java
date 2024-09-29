@@ -25,12 +25,13 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void inicializarComponentes() {
+		pLogin = new PanelLogin();
+		getContentPane().add(pLogin);
 		pFunciones = new Funciones();
 		getContentPane().add(pFunciones);
 		pCrearUsuario = new PanelCrearUsuario();
 		getContentPane().add(pCrearUsuario);
-		pLogin = new PanelLogin();
-		getContentPane().add(pLogin);
+		
 		
 	}
 
