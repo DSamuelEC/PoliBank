@@ -1,8 +1,5 @@
 package co.edu.unbosque.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-
 import javax.swing.JFrame;
 
 public class VentanaPrincipal extends JFrame {
@@ -15,7 +12,8 @@ public class VentanaPrincipal extends JFrame {
 		setTitle("PoliBank");
 		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new BorderLayout());
+//		setLayout(new BorderLayout());
+		getContentPane().setLayout(null);
 
 		inicializarComponentes();
 
@@ -25,14 +23,17 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void inicializarComponentes() {
-		pLogin = new PanelLogin();
-		getContentPane().add(pLogin);
 		pFunciones = new Funciones();
+		pFunciones.setBounds(0, 0, 500, 500);
 		getContentPane().add(pFunciones);
+
 		pCrearUsuario = new PanelCrearUsuario();
+		pCrearUsuario.setBounds(0, 0, 500, 500);
 		getContentPane().add(pCrearUsuario);
-		
-		
+
+		pLogin = new PanelLogin();
+		pLogin.setBounds(0, 0, 500, 500);
+		getContentPane().add(pLogin);
 	}
 
 	public PanelLogin getpLogin() {

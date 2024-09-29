@@ -1,6 +1,8 @@
 package co.edu.unbosque.view;
 
 import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.*;
 
@@ -10,28 +12,28 @@ public class PanelCrearUsuario extends JPanel {
 	private JTextField txtSaldoTC;
 	private JTextField txtPassword;
 	private JButton btnCreateUser;
-	
+
 	public PanelCrearUsuario() {
 		setLayout(null);
-		setBackground(Color.white);
+		setBackground(new Color(188, 183, 255));
 
 		inicializarComponentes();
 
-		setVisible(true);
+		setVisible(false);
 	}
 
 	public void inicializarComponentes() {
-		txtUserName = new JTextField("UserName");
+		txtUserName = new JTextField();
 		txtUserName.setBounds(70, 60, 350, 40);
-		txtUserName.setActionCommand("UserName");
+		configurarPlaceholder(txtUserName, "UserName");
 
-		txtSaldoTC = new JTextField("Saldo TC");
+		txtSaldoTC = new JTextField();
 		txtSaldoTC.setBounds(70, 130, 350, 40);
-		txtSaldoTC.setActionCommand("Saldo TC");
-		
-		txtPassword = new JTextField("Password");
+		configurarPlaceholder(txtSaldoTC, "Cupo");
+
+		txtPassword = new JTextField();
 		txtPassword.setBounds(70, 200, 350, 40);
-		txtPassword.setActionCommand("Password");
+		configurarPlaceholder(txtPassword, "Password");
 
 		btnCreateUser = new JButton("Create User");
 		btnCreateUser.setBounds(190, 270, 120, 20);
@@ -39,8 +41,34 @@ public class PanelCrearUsuario extends JPanel {
 
 		add(txtUserName);
 		add(txtPassword);
-		add(txtSaldoTC);	
+		add(txtSaldoTC);
 		add(btnCreateUser);
+	}
+	
+	private void configurarPlaceholder(JTextField textField, String placeholder) {
+		// Establecer el placeholder inicialmente
+		textField.setText(placeholder);
+		textField.setForeground(Color.GRAY);
+
+		textField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				// Si el texto es igual al placeholder, lo borra y cambia el color
+				if (textField.getText().equals(placeholder)) {
+					textField.setText("");
+					textField.setForeground(Color.BLACK);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// Si el campo está vacío al perder el foco, restablece el placeholder
+				if (textField.getText().isEmpty()) {
+					textField.setForeground(Color.GRAY);
+					textField.setText(placeholder);
+				}
+			}
+		});
 	}
 
 	public JTextField getTxtUserName() {
@@ -74,5 +102,5 @@ public class PanelCrearUsuario extends JPanel {
 	public void setBtnCreateUser(JButton btnCreateUser) {
 		this.btnCreateUser = btnCreateUser;
 	}
-	
+
 }
