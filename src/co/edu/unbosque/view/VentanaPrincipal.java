@@ -15,7 +15,6 @@ public class VentanaPrincipal extends JFrame {
 		setTitle("PoliBank");
 		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(Color.gray);
 		getContentPane().setLayout(new BorderLayout());
 
 		inicializarComponentes();
@@ -26,12 +25,36 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void inicializarComponentes() {
-		pLogin = new PanelLogin();
-		getContentPane().add(pLogin);
-		pCrearUsuario = new PanelCrearUsuario();
-		getContentPane().add(pCrearUsuario);
 		pFunciones = new Funciones();
 		getContentPane().add(pFunciones);
+		pCrearUsuario = new PanelCrearUsuario();
+		getContentPane().add(pCrearUsuario);
+		pLogin = new PanelLogin();
+		getContentPane().add(pLogin);
 		
+	}
+
+	public PanelLogin getpLogin() {
+		return pLogin;
+	}
+
+	public void setpLogin(PanelLogin pLogin) {
+		this.pLogin = pLogin;
+	}
+
+	public PanelCrearUsuario getpCrearUsuario() {
+		return pCrearUsuario;
+	}
+
+	public void setpCrearUsuario(PanelCrearUsuario pCrearUsuario) {
+		this.pCrearUsuario = pCrearUsuario;
+	}
+
+	public Funciones getpFunciones() {
+		return pFunciones;
+	}
+
+	public void setpFunciones(Funciones pFunciones) {
+		this.pFunciones = pFunciones;
 	}
 }

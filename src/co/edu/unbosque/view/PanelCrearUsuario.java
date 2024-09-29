@@ -1,7 +1,6 @@
 package co.edu.unbosque.view;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 
 import javax.swing.*;
 
@@ -13,7 +12,7 @@ public class PanelCrearUsuario extends JPanel {
 	private JButton btnCreateUser;
 	
 	public PanelCrearUsuario() {
-		setLayout(new GridLayout(400, 400));
+		setLayout(null);
 		setBackground(Color.white);
 
 		inicializarComponentes();
@@ -23,20 +22,20 @@ public class PanelCrearUsuario extends JPanel {
 
 	public void inicializarComponentes() {
 		txtUserName = new JTextField("UserName");
-		txtUserName.setBounds(30, 30, 150, 20);
+		txtUserName.setBounds(70, 60, 350, 40);
 		txtUserName.setActionCommand("UserName");
 
 		txtSaldoTC = new JTextField("Saldo TC");
-		txtSaldoTC.setBounds(30, 70, 120, 20);
+		txtSaldoTC.setBounds(70, 130, 350, 40);
 		txtSaldoTC.setActionCommand("Saldo TC");
 		
 		txtPassword = new JTextField("Password");
-		txtPassword.setBounds(30, 110, 120, 20);
+		txtPassword.setBounds(70, 200, 350, 40);
 		txtPassword.setActionCommand("Password");
 
 		btnCreateUser = new JButton("Create User");
-		btnCreateUser.setBounds(130, 160, 120, 20);
-		btnCreateUser.setActionCommand("Create User Login");
+		btnCreateUser.setBounds(190, 270, 120, 20);
+		btnCreateUser.setActionCommand("Create User");
 
 		add(txtUserName);
 		add(txtPassword);

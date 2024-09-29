@@ -12,25 +12,25 @@ public class Funciones extends JPanel {
 
 	public Funciones() {
 
-		setLayout(new GridLayout(400, 400));
+		setLayout(null);
 		setBackground(Color.white);
 
 		inicializarComponentes();
 
-		setVisible(false);
+		setVisible(true);
 	}
 
 	public void inicializarComponentes() {
 		txtLoverName = new JTextField("LoverName");
-		txtLoverName.setBounds(10, 30, 150, 20);
+		txtLoverName.setBounds(70, 130, 350, 40);
 		txtLoverName.setActionCommand("LoverName");
 
 		txtSaldoTC = new JTextField("Saldo TC");
-		txtSaldoTC.setBounds(10, 70, 120, 20);
+		txtSaldoTC.setBounds(70, 200, 350, 40);
 		txtSaldoTC.setActionCommand("Saldo TC");
 
 		btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(10, 160, 120, 20);
+		btnSubmit.setBounds(190, 270, 120, 20);
 		btnSubmit.setActionCommand("Submit");
 
 		add(txtLoverName);
