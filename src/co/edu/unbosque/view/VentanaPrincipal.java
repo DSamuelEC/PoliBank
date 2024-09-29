@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 public class VentanaPrincipal extends JFrame {
 
 	private PanelLogin pLogin;
+	private PanelCrearUsuario pCrearUsuario;
+	private Funciones pFunciones;
 
 	public VentanaPrincipal() {
 		setTitle("PoliBank");
@@ -26,5 +28,10 @@ public class VentanaPrincipal extends JFrame {
 	public void inicializarComponentes() {
 		pLogin = new PanelLogin();
 		getContentPane().add(pLogin);
+		pCrearUsuario = new PanelCrearUsuario();
+		getContentPane().add(pCrearUsuario);
+		pFunciones = new Funciones();
+		getContentPane().add(pFunciones);
+		
 	}
 }
