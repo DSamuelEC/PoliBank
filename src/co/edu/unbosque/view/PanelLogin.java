@@ -7,17 +7,17 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class LoginPanel extends JPanel {
+public class PanelLogin extends JPanel {
 	private JTextField txtUserName, txtPassword;
 	private JButton btnCreateUser, btnSubmit;
 
-	public LoginPanel() {
+	public PanelLogin() {
 		setLayout(null);
 		setBackground(new Color(41, 119, 255));
 
 		inicializarComponentes();
 
-		setVisible(true);
+		setVisible(false);
 	}
 
 	private void inicializarComponentes() {

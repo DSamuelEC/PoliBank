@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class VentanaPrincipal extends JFrame {
 
-	private LoginPanel pLogin;
+	private PanelLogin pLogin;
 
 	public VentanaPrincipal() {
 		setTitle("PoliBank");
@@ -24,7 +24,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void inicializarComponentes() {
-		pLogin = new LoginPanel();
+		pLogin = new PanelLogin();
 		getContentPane().add(pLogin);
 	}
 }
