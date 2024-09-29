@@ -17,7 +17,7 @@ public class PanelLogin extends JPanel {
 
 		inicializarComponentes();
 
-		setVisible(false);
+		setVisible(true);
 	}
 
 	private void inicializarComponentes() {

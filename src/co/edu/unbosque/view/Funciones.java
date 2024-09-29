@@ -17,7 +17,7 @@ public class Funciones extends JPanel {
 
 		inicializarComponentes();
 
-		setVisible(true);
+		setVisible(false);
 	}
 
 	public void inicializarComponentes() {
