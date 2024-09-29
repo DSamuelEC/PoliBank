@@ -25,6 +25,6 @@ public class VentanaPrincipal extends JFrame {
 
 	public void inicializarComponentes() {
 		pLogin = new LoginPanel();
-		getContentPane().add(pLogin, BorderLayout.CENTER);
+		getContentPane().add(pLogin);
 	}
 }

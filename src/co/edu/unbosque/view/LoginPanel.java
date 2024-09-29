@@ -1,8 +1,6 @@
 package co.edu.unbosque.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JButton;
@@ -14,8 +12,8 @@ public class LoginPanel extends JPanel {
 	private JButton btnCreateUser, btnSubmit;
 
 	public LoginPanel() {
-		setLayout(new GridLayout(2, 2));
-		setBackground(Color.CYAN);
+		setLayout(null);
+		setBackground(new Color(41, 119, 255));
 
 		inicializarComponentes();
 
@@ -24,16 +22,20 @@ public class LoginPanel extends JPanel {
 
 	private void inicializarComponentes() {
 		txtUserName = new JTextField();
+		txtUserName.setBounds(30, 100, 420, 40);
 		configurarPlaceholder(txtUserName, "UserName");
 
 		txtPassword = new JTextField();
+		txtPassword.setBounds(30, 170, 420, 40);
 		configurarPlaceholder(txtPassword, "Password");
 
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setActionCommand("Sumbit Login");
+		btnSubmit.setBounds(30, 240, 200, 40);
 
 		btnCreateUser = new JButton("Create User");
 		btnCreateUser.setActionCommand("Create User Login");
+		btnCreateUser.setBounds(250, 240, 200, 40);
 
 		add(txtUserName);
 		add(txtPassword);
