@@ -12,7 +12,7 @@ public class PanelHomeUser extends JPanel {
         setLayout(null);
         setBackground(new Color(41, 119, 255));
         inicializarComponentes();
-        setVisible(true);
+        setVisible(false);
     }
 
     private void inicializarComponentes() {
@@ -53,10 +53,10 @@ public class PanelHomeUser extends JPanel {
         btnActualizarPareja.setBounds(5, 10, 150, 25);
         btnEliminarPareja = new JButton("Eliminar Pareja");
         btnEliminarPareja.setBounds(165, 10, 150, 25);
-        btnSalir = new JButton("Salir");
-        btnSalir.setBounds(325, 10, 140, 25);
         btnVerTodo = new JButton("Ver Todo");
-        btnVerTodo.setBounds(165, 50, 150, 25); 
+        btnVerTodo.setBounds(325, 10, 140, 25);
+        btnSalir = new JButton("Salir");
+        btnSalir.setBounds(165, 50, 150, 25); 
 
         panelBotones.add(btnActualizarPareja);
         panelBotones.add(btnEliminarPareja);
@@ -67,4 +67,69 @@ public class PanelHomeUser extends JPanel {
         add(scrollPane);
         add(panelBotones);
     }
+
+	public JButton getBtnAgregarPareja() {
+		return btnAgregarPareja;
+	}
+
+	public void setBtnAgregarPareja(JButton btnAgregarPareja) {
+		this.btnAgregarPareja = btnAgregarPareja;
+	}
+
+	public JButton getBtnActualizarPareja() {
+		return btnActualizarPareja;
+	}
+
+	public void setBtnActualizarPareja(JButton btnActualizarPareja) {
+		this.btnActualizarPareja = btnActualizarPareja;
+	}
+
+	public JButton getBtnEliminarPareja() {
+		return btnEliminarPareja;
+	}
+
+	public void setBtnEliminarPareja(JButton btnEliminarPareja) {
+		this.btnEliminarPareja = btnEliminarPareja;
+	}
+
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
+
+	public void setBtnSalir(JButton btnSalir) {
+		this.btnSalir = btnSalir;
+	}
+
+	public JButton getBtnVerTodo() {
+		return btnVerTodo;
+	}
+
+	public void setBtnVerTodo(JButton btnVerTodo) {
+		this.btnVerTodo = btnVerTodo;
+	}
+
+	public JTextField getTxtAliasPareja() {
+		return txtAliasPareja;
+	}
+
+	public void setTxtAliasPareja(JTextField txtAliasPareja) {
+		this.txtAliasPareja = txtAliasPareja;
+	}
+
+	public JTextField getTxtCupoPareja() {
+		return txtCupoPareja;
+	}
+
+	public void setTxtCupoPareja(JTextField txtCupoPareja) {
+		this.txtCupoPareja = txtCupoPareja;
+	}
+
+	public JTable getTableParejas() {
+		return tableParejas;
+	}
+
+	public void setTableParejas(JTable tableParejas) {
+		this.tableParejas = tableParejas;
+	}
+    
 }

@@ -27,24 +27,22 @@ public class VentanaPrincipal extends JFrame {
 		pHomeUser = new PanelHomeUser();
 		pHomeUser.setBounds(0, 0, 500, 500);
 		getContentPane().add(pHomeUser);
-		/*pFunciones = new Funciones();
-		pFunciones.setBounds(0, 0, 500, 500);
-		getContentPane().add(pFunciones);
 
 		pCrearUsuario = new PanelCrearUsuario();
 		pCrearUsuario.setBounds(0, 0, 500, 500);
 		getContentPane().add(pCrearUsuario);
 
+		pFunciones = new Funciones();
+		pFunciones.setBounds(0, 0, 500, 500);
+		getContentPane().add(pFunciones);
+		
 		pLogin = new PanelLogin();
 		pLogin.setBounds(0, 0, 500, 500);
-		getContentPane().add(pLogin);*/
-		
-		
-		
-		
+		getContentPane().add(pLogin);
+
 	}
 
-	/*public PanelLogin getpLogin() {
+	public PanelLogin getpLogin() {
 		return pLogin;
 	}
 
@@ -60,14 +58,6 @@ public class VentanaPrincipal extends JFrame {
 		this.pCrearUsuario = pCrearUsuario;
 	}
 
-	public Funciones getpFunciones() {
-		return pFunciones;
-	}
-
-	public void setpFunciones(Funciones pFunciones) {
-		this.pFunciones = pFunciones;
-	}*/
-
 	public PanelHomeUser getpHomeUser() {
 		return pHomeUser;
 	}
@@ -75,5 +65,13 @@ public class VentanaPrincipal extends JFrame {
 	public void setpHomeUser(PanelHomeUser pHomeUser) {
 		this.pHomeUser = pHomeUser;
 	}
-	
+
+	public Funciones getpFunciones() {
+		return pFunciones;
+	}
+
+	public void setpFunciones(Funciones pFunciones) {
+		this.pFunciones = pFunciones;
+	}
+
 }

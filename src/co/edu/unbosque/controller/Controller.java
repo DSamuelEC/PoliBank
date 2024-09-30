@@ -14,12 +14,15 @@ public class Controller implements ActionListener {
 	}
 
 	private void asignarOyentes() {
-		/*ventanaP.getpLogin().getBtnCreateUser().addActionListener(e -> {
+		ventanaP.getpLogin().getBtnCreateUser().addActionListener(e -> {
 			
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpCrearUsuario().setVisible(true);
 		});
 		ventanaP.getpLogin().getBtnSubmit().addActionListener(e -> {
+			
+			ventanaP.getpLogin().setVisible(false);
+			ventanaP.getpHomeUser().setVisible(true);
 
 		});
 		ventanaP.getpCrearUsuario().getBtnCreateUser().addActionListener(e -> {
@@ -28,7 +31,33 @@ public class Controller implements ActionListener {
 		});
 		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
 
-		});*/
+		});
+		ventanaP.getpHomeUser().getBtnActualizarPareja().addActionListener(e -> {
+			ventanaP.getpHomeUser().setVisible(false);
+			ventanaP.getpFunciones().setVisible(true);
+		});
+		ventanaP.getpHomeUser().getBtnEliminarPareja().addActionListener(e -> {
+			ventanaP.getpHomeUser().setVisible(false);
+			ventanaP.getpFunciones().setVisible(true);
+		});
+		ventanaP.getpLogin().getBtnSubmit().addActionListener(e -> {
+			
+			ventanaP.getpLogin().setVisible(false);
+			ventanaP.getpHomeUser().setVisible(true);
+
+		});
+		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
+			
+			ventanaP.getpFunciones().setVisible(false);
+			ventanaP.getpHomeUser().setVisible(true);
+
+		});
+		ventanaP.getpHomeUser().getBtnSalir().addActionListener(e -> {
+			
+			ventanaP.getpHomeUser().setVisible(false);
+			ventanaP.getpLogin().setVisible(true);
+
+		});
 	}
 
 	@Override
