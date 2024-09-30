@@ -24,7 +24,7 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 		String rta = "";
 		datos = archivo.leerArchivo();
 		if(!datos.isEmpty()) {
-			for(Mascota x : datos) {
+			for(Usuario x : datos) {
 				rta += x + "\n";
 			}
 		}
@@ -32,7 +32,7 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 	}
 
 	@Override
-	public boolean add(Mascota x) {
+	public boolean add(Usuario x) {
 		if(find(x) == null) {
 			datos.add(x);
 			archivo.escribirArchivo(datos);
@@ -42,8 +42,8 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 	}
 
 	@Override
-	public boolean delete(Mascota x) {
-		Mascota y = find(x);
+	public boolean delete(Usuario x) {
+		Usuario y = find(x);
 		if(y != null) {
 			try {
 				datos.remove(y);
@@ -60,8 +60,8 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 	}
 
 	@Override
-	public boolean update(Mascota x, Mascota y) {
-		Mascota e = find(x);
+	public boolean update(Usuario x, Usuario y) {
+		Usuario e = find(x);
 		if(e != null) {
 			datos.remove(e);
 			e.setEdad(y.getEdad());
@@ -73,10 +73,10 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 	}
 
 	@Override
-	public Mascota find(Mascota x) {
-		Mascota encontrado = null;
+	public Usuario find(Usuario x) {
+		Usuario encontrado = null;
 		if(!datos.isEmpty()) {
-			for(Mascota y : datos) {
+			for(Usuario y : datos) {
 				if( y.getNombre().equals(x.getNombre())) {
 					encontrado = y;
 				}
