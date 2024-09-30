@@ -18,7 +18,7 @@ public class PanelHomeUser extends JPanel {
     private void inicializarComponentes() {
         // Panel para agregar nueva pareja
         JPanel panelFormularioParejas = new JPanel(null);
-        panelFormularioParejas.setBounds(10, 10, 480, 100);
+        panelFormularioParejas.setBounds(10, 10, 470, 100);
         panelFormularioParejas.setBackground(new Color(200, 200, 255));  // Un color diferente para visualizar el panel
 
         JLabel lblAlias = new JLabel("Alias de la Pareja:");
@@ -32,7 +32,7 @@ public class PanelHomeUser extends JPanel {
         txtCupoPareja.setBounds(140, 40, 150, 25);
 
         btnAgregarPareja = new JButton("Agregar Pareja");
-        btnAgregarPareja.setBounds(300, 10, 170, 25);
+        btnAgregarPareja.setBounds(300, 10, 160, 25);
 
         panelFormularioParejas.add(lblAlias);
         panelFormularioParejas.add(txtAliasPareja);
