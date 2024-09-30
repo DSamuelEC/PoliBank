@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import co.edu.unbosque.model.Usuario;
 //archivo persistencia de usuarios en bin
 public class Archivo {
 
@@ -25,10 +27,10 @@ public class Archivo {
 		}
 	}
 	
-	public void escribirArchivo(ArrayList<Mascota> clientes) {
+	public void escribirArchivo(ArrayList<Usuario> usuarios) {
 		try {
 			salida = new ObjectOutputStream(new FileOutputStream(ubicacionArchivo));
-			ArrayList<UsuarioDTO> datos = MapHandler.convertirVeterinariatoVeterinariaDTO(clientes);
+			ArrayList<UsuarioDTO> datos = MapHandler.convertirVeterinariatoVeterinariaDTO(usuarios);
 			salida.writeObject(datos);
 			salida.close();
 		}catch (FileNotFoundException e) {
