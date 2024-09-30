@@ -71,20 +71,30 @@ public class Usuario {
         return null;
     }
 
-    // Getters y Setters
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
 
-    public TC getTarjetaCredito() {
-        return tarjetaCredito;
-    }
+	public TC getTarjetaCredito() {
+		return tarjetaCredito;
+	}
 
-    public ArrayList<Pareja> getParejas() {
-        return parejas;
-    }
+	public void setTarjetaCredito(TC tarjetaCredito) {
+		this.tarjetaCredito = tarjetaCredito;
+	}
+
+	public ArrayList<Pareja> getParejas() {
+		return parejas;
+	}
+
+	public void setParejas(ArrayList<Pareja> parejas) {
+		this.parejas = parejas;
+	}
+   
+    
+    
 }
