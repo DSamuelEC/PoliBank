@@ -14,7 +14,7 @@ public class Controller implements ActionListener {
 	}
 
 	private void asignarOyentes() {
-		ventanaP.getpLogin().getBtnCreateUser().addActionListener(e -> {
+		/*ventanaP.getpLogin().getBtnCreateUser().addActionListener(e -> {
 			
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpCrearUsuario().setVisible(true);
@@ -28,7 +28,7 @@ public class Controller implements ActionListener {
 		});
 		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
 
-		});
+		});*/
 	}
 
 	@Override

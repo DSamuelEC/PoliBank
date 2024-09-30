@@ -7,6 +7,7 @@ public class VentanaPrincipal extends JFrame {
 	private PanelLogin pLogin;
 	private PanelCrearUsuario pCrearUsuario;
 	private Funciones pFunciones;
+	private PanelHomeUser pHomeUser;
 
 	public VentanaPrincipal() {
 		setTitle("PoliBank");
@@ -23,7 +24,10 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void inicializarComponentes() {
-		pFunciones = new Funciones();
+		pHomeUser = new PanelHomeUser();
+		pHomeUser.setBounds(0, 0, 500, 500);
+		getContentPane().add(pHomeUser);
+		/*pFunciones = new Funciones();
 		pFunciones.setBounds(0, 0, 500, 500);
 		getContentPane().add(pFunciones);
 
@@ -33,10 +37,14 @@ public class VentanaPrincipal extends JFrame {
 
 		pLogin = new PanelLogin();
 		pLogin.setBounds(0, 0, 500, 500);
-		getContentPane().add(pLogin);
+		getContentPane().add(pLogin);*/
+		
+		
+		
+		
 	}
 
-	public PanelLogin getpLogin() {
+	/*public PanelLogin getpLogin() {
 		return pLogin;
 	}
 
@@ -58,5 +66,14 @@ public class VentanaPrincipal extends JFrame {
 
 	public void setpFunciones(Funciones pFunciones) {
 		this.pFunciones = pFunciones;
+	}*/
+
+	public PanelHomeUser getpHomeUser() {
+		return pHomeUser;
 	}
+
+	public void setpHomeUser(PanelHomeUser pHomeUser) {
+		this.pHomeUser = pHomeUser;
+	}
+	
 }
