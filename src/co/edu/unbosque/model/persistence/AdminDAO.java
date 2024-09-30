@@ -3,15 +3,16 @@ package co.edu.unbosque.model.persistence;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import co.edu.unbosque.model.Pareja;
+import co.edu.unbosque.model.Usuario;
 
-public class AdminDAO implements InterfaceDAO<Pareja>{
 
-	private ArrayList<Pareja> datos;
+public class AdminDAO implements InterfaceDAO<Usuario>{
+
+	private ArrayList<Usuario> datos;
 	private Archivo archivo;
 	
 	public AdminDAO() {
-		datos = new ArrayList<Pareja>();
+		datos = new ArrayList<Usuario>();
 		archivo = new Archivo();
 	}
 	
@@ -24,7 +25,7 @@ public class AdminDAO implements InterfaceDAO<Pareja>{
 		String rta = "";
 		datos = archivo.leerArchivo();
 		if(!datos.isEmpty()) {
-			for(Pareja x : datos) {
+			for(Usuario x : datos) {
 				rta += x + "\n";
 			}
 		}
@@ -32,7 +33,7 @@ public class AdminDAO implements InterfaceDAO<Pareja>{
 	}
 
 	@Override
-	public boolean add(Pareja x) {
+	public boolean add(Usuario x) {
 		if(find(x) == null) {
 			datos.add(x);
 			archivo.escribirArchivo(datos);
@@ -42,8 +43,8 @@ public class AdminDAO implements InterfaceDAO<Pareja>{
 	}
 
 	@Override
-	public boolean delete(Pareja x) {
-		Pareja y = find(x);
+	public boolean delete(Usuario x) {
+		Usuario y = find(x);
 		if(y != null) {
 			try {
 				datos.remove(y);
@@ -60,12 +61,11 @@ public class AdminDAO implements InterfaceDAO<Pareja>{
 	}
 
 	@Override
-	public boolean update(Pareja x, Pareja y) {
-		Pareja e = find(x);
+	public boolean update(Usuario x, Usuario y) {
+		Usuario e = find(x);
 		if(e != null) {
 			datos.remove(e);
-			e.setAlias(y.getAlias());
-			e.setCupoAsignado(y.getCupoAsignado());
+			e.setParejas(y.getParejas());
 			datos.add(e);
 			return true;
 		}
@@ -73,11 +73,11 @@ public class AdminDAO implements InterfaceDAO<Pareja>{
 	}
 
 	@Override
-	public Pareja find(Pareja x) {
-		Pareja encontrado = null;
+	public Usuario find(Usuario x) {
+		Usuario encontrado = null;
 		if(!datos.isEmpty()) {
-			for(Pareja y : datos) {
-				if( y.getAlias().equals(x.getAlias())) {
+			for(Usuario y : datos) {
+				if( y.getParejas().equals(x.getParejas())) {
 					encontrado = y;
 				}
 			}
