@@ -40,8 +40,8 @@ public class Archivo {
 		}
 	}
 	
-	public ArrayList<Mascota> leerArchivo(){
-		ArrayList<Mascota> clientes = null;
+	public ArrayList<Usuario> leerArchivo(){
+		ArrayList<Usuario> clientes = null;
 		
 		if(ubicacionArchivo.length()!=0) {
 			try {

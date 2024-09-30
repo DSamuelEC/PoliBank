@@ -7,7 +7,7 @@ public class UsuarioDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String nombreUsuario;
-	private TcDTO cupo;
+	private double cupoTotal;
 	private ArrayList<ParejaDTO> parejas;
 
 	public String getNombreUsuario() {
@@ -18,12 +18,12 @@ public class UsuarioDTO implements Serializable {
 		this.nombreUsuario = nombreUsuario;
 	}
 
-	public TcDTO getCupo() {
-		return cupo;
+	public double getCupoTotal() {
+		return cupoTotal;
 	}
 
-	public void setCupo(TcDTO cupo) {
-		this.cupo = cupo;
+	public void setCupoTotal(double cupoTotal) {
+		this.cupoTotal = cupoTotal;
 	}
 
 	public ArrayList<ParejaDTO> getParejas() {

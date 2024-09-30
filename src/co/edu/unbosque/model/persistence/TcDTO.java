@@ -1,7 +1,7 @@
 package co.edu.unbosque.model.persistence;
 
 import java.io.Serializable;
-
+//YA NO SE USA
 public class TcDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
