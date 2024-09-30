@@ -6,11 +6,11 @@ import co.edu.unbosque.model.Pareja;
 import co.edu.unbosque.model.Usuario;
 
 public class MapHandler {
-	
-	public static ArrayList<Pareja> convertirParejaDTOtoPareja(ArrayList<ParejaDTO> parejasDTOs){
+
+	public static ArrayList<Pareja> convertirParejaDTOtoPareja(ArrayList<ParejaDTO> parejasDTOs) {
 		Pareja x;
 		ArrayList<Pareja> parejas = new ArrayList<Pareja>();
-		
+
 		for (ParejaDTO pareDTO : parejasDTOs) {
 			x = new Pareja(pareDTO.getNombrePareja(), pareDTO.getCupoAsignado());
 			parejas.add(x);
@@ -30,13 +30,13 @@ public class MapHandler {
 		}
 		return parejasDTOs;
 	}
-	
+
 	public static Usuario convertirUsuarioDTOtoUsuario(UsuarioDTO uDTO) {
 		Usuario x = new Usuario(uDTO.getNombreUsuario(), uDTO.getCupoTotal());
 		x.setParejas(convertirParejaDTOtoPareja(uDTO.getParejas()));
 		return x;
 	}
-	
+
 	public static UsuarioDTO convertirUsuariotoUsarioDTO(Usuario user) {
 		UsuarioDTO x = new UsuarioDTO(); // es el contructor por defecto de una clase que NO tiene constructor, por
 											// transportar informacion no se crea el constructor
@@ -56,7 +56,7 @@ public class MapHandler {
 		return x;
 	}
 
-	public static ArrayList<UsuarioDTO> convertirUsuariotoUsuarioDTO(ArrayList<Usuario> users) {
+	public static ArrayList<UsuarioDTO> convertirAdmintoAdminDTO(ArrayList<Usuario> users) {
 		ArrayList<UsuarioDTO> x = new ArrayList<UsuarioDTO>();
 		for (Usuario u : users) {
 			UsuarioDTO aux = convertirUsuariotoUsarioDTO(u);
