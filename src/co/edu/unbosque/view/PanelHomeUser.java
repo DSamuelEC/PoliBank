@@ -29,7 +29,7 @@ public class PanelHomeUser extends JPanel {
 
 		Usuario.add(lblCupoUsuario);
 		Usuario.add(lblUserName);
-
+//xd
 		// Panel para agregar nueva pareja
 		JPanel panelFormularioParejas = new JPanel(null);
 		panelFormularioParejas.setBounds(8, 42, 470, 100);
@@ -56,8 +56,9 @@ public class PanelHomeUser extends JPanel {
 
 		// Tabla para mostrar las parejas
 		tableParejas = new JTable();
-		JScrollPane scrollPane = new JScrollPane(tableParejas);
-		scrollPane.setBounds(8, 150, 470, 180);
+		JScrollPane scrollPane1 = new JScrollPane(tableParejas);
+		scrollPane1.setBounds(8, 150, 470, 180);
+
 
 		// Panel para botones
 		JPanel panelBotones = new JPanel(null);
@@ -78,7 +79,7 @@ public class PanelHomeUser extends JPanel {
 		panelBotones.add(btnVerTodo);
 
 		add(panelFormularioParejas);
-		add(scrollPane);
+		add(scrollPane1);
 		add(panelBotones);
 		add(Usuario);
 	}
