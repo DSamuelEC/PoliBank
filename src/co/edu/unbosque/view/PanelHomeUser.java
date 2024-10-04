@@ -54,10 +54,13 @@ public class PanelHomeUser extends JPanel {
 		panelFormularioParejas.add(txtCupoPareja);
 		panelFormularioParejas.add(btnAgregarPareja);
 
+		
 		// Tabla para mostrar las parejas
 		tableParejas = new JTable();
-		JScrollPane scrollPane1 = new JScrollPane(tableParejas);
-		scrollPane1.setBounds(8, 150, 470, 180);
+		JScrollPane scrollPanel = new JScrollPane(tableParejas);
+		scrollPanel.setBounds(8, 150, 470, 180);
+		scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 
 		// Panel para botones
@@ -79,9 +82,9 @@ public class PanelHomeUser extends JPanel {
 		panelBotones.add(btnVerTodo);
 
 		add(panelFormularioParejas);
-		add(scrollPane1);
 		add(panelBotones);
 		add(Usuario);
+		add(scrollPanel);
 	}
 
 	public JButton getBtnAgregarPareja() {
