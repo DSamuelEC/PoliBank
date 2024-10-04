@@ -3,6 +3,7 @@ package co.edu.unbosque.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.attribute.AclEntry;
+import java.util.ArrayList;
 import java.util.Set;
 
 import co.edu.unbosque.model.Bank;
@@ -21,19 +22,14 @@ public class Controller implements ActionListener {
 
 	private void asignarOyentes() {
 		ventanaP.getpLogin().getBtnCreateUser().addActionListener(e -> {
-			ventanaP.getpLogin().setVisible(false);
-			ventanaP.getpCrearUsuario().setVisible(true);
-
+			loginCreateBtn();
 		});
 		ventanaP.getpLogin().getBtnSubmit().addActionListener(e -> {
-
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
 
 		});
 		ventanaP.getpCrearUsuario().getBtnCreateUser().addActionListener(e -> {
-			ventanaP.getpCrearUsuario().setVisible(false);
-			ventanaP.getpLogin().setVisible(true);
 			capturarDatosLogin();
 		});
 		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
@@ -78,14 +74,34 @@ public class Controller implements ActionListener {
 		bank.actualizarBD();
 	}
 
+	public void loginCreateBtn() {
+		ventanaP.getpLogin().setVisible(false);
+		ventanaP.getpCrearUsuario().setVisible(true);
+	}
+
 	public void capturarDatosLogin() {
 		String nombre = ventanaP.getpCrearUsuario().getTxtUserName().getText();
 		double cupoTotal = Double.parseDouble(ventanaP.getpCrearUsuario().getTxtSaldoTC().getText());
+		
+		String nombrePareja = ventanaP.getpCrearUsuario().getTxtParejaNombre().getText();
+		double cupoPareja = Double.parseDouble(ventanaP.getpCrearUsuario().getTxtParejaCupo().getText());
+		
 		UsuarioDTO userDTO = new UsuarioDTO();
+		ParejaDTO parejaDTO = new ParejaDTO();
+		ArrayList<ParejaDTO> parejas = new ArrayList<ParejaDTO>();
+		
+		parejaDTO.setNombrePareja(nombrePareja);
+		parejaDTO.setCupoAsignado(cupoPareja);
+		parejas.add(parejaDTO);
 		
 		userDTO.setNombreUsuario(nombre);
 		userDTO.setCupoTotal(cupoTotal);
+		userDTO.setParejas(parejas);
 		bank.adicionarUsuario(userDTO);
+
+		ventanaP.getpCrearUsuario().setVisible(false);
+		ventanaP.getpLogin().setVisible(true);
+
 		System.out.println(userDTO);
 	}
 }

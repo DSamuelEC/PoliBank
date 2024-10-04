@@ -11,8 +11,8 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 	private Archivo archivo;
 
 	public BankDAO() {
-		datos = new ArrayList<Usuario>();
-		archivo = new Archivo();
+		this.datos = new ArrayList<Usuario>();
+		this.archivo = new Archivo();
 	}
 
 	public void actualizarBD() {
