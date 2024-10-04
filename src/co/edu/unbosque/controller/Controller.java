@@ -2,9 +2,7 @@ package co.edu.unbosque.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.file.attribute.AclEntry;
 import java.util.ArrayList;
-import java.util.Set;
 
 import co.edu.unbosque.model.Bank;
 import co.edu.unbosque.model.persistence.ParejaDTO;
