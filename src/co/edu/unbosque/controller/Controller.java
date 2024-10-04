@@ -2,11 +2,17 @@ package co.edu.unbosque.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.attribute.AclEntry;
+import java.util.Set;
 
+import co.edu.unbosque.model.Bank;
+import co.edu.unbosque.model.persistence.ParejaDTO;
+import co.edu.unbosque.model.persistence.UsuarioDTO;
 import co.edu.unbosque.view.VentanaPrincipal;
 
 public class Controller implements ActionListener {
 	private VentanaPrincipal ventanaP;
+	private Bank bank;
 
 	public Controller() {
 		ventanaP = new VentanaPrincipal();
@@ -15,12 +21,12 @@ public class Controller implements ActionListener {
 
 	private void asignarOyentes() {
 		ventanaP.getpLogin().getBtnCreateUser().addActionListener(e -> {
-			
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpCrearUsuario().setVisible(true);
+
 		});
 		ventanaP.getpLogin().getBtnSubmit().addActionListener(e -> {
-			
+
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
 
@@ -28,6 +34,7 @@ public class Controller implements ActionListener {
 		ventanaP.getpCrearUsuario().getBtnCreateUser().addActionListener(e -> {
 			ventanaP.getpCrearUsuario().setVisible(false);
 			ventanaP.getpLogin().setVisible(true);
+			capturarDatosLogin();
 		});
 		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
 
@@ -41,19 +48,19 @@ public class Controller implements ActionListener {
 			ventanaP.getpFunciones().setVisible(true);
 		});
 		ventanaP.getpLogin().getBtnSubmit().addActionListener(e -> {
-			
+
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
 
 		});
 		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
-			
+
 			ventanaP.getpFunciones().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
 
 		});
 		ventanaP.getpHomeUser().getBtnSalir().addActionListener(e -> {
-			
+
 			ventanaP.getpHomeUser().setVisible(false);
 			ventanaP.getpLogin().setVisible(true);
 
@@ -67,7 +74,18 @@ public class Controller implements ActionListener {
 	}
 
 	public void run() {
-
+		bank = new Bank();
+		bank.actualizarBD();
 	}
 
+	public void capturarDatosLogin() {
+		String nombre = ventanaP.getpCrearUsuario().getTxtUserName().getText();
+		double cupoTotal = Double.parseDouble(ventanaP.getpCrearUsuario().getTxtSaldoTC().getText());
+		UsuarioDTO userDTO = new UsuarioDTO();
+		
+		userDTO.setNombreUsuario(nombre);
+		userDTO.setCupoTotal(cupoTotal);
+		bank.adicionarUsuario(userDTO);
+		System.out.println(userDTO);
+	}
 }

@@ -8,9 +8,7 @@ import javax.swing.*;
 
 public class PanelCrearUsuario extends JPanel {
 
-	private JTextField txtUserName;
-	private JTextField txtSaldoTC;
-	private JTextField txtPassword;
+	private JTextField txtUserName, txtSaldoTC, txtParejaNombre, txtParejaCupo;
 	private JButton btnCreateUser;
 
 	public PanelCrearUsuario() {
@@ -31,16 +29,11 @@ public class PanelCrearUsuario extends JPanel {
 		txtSaldoTC.setBounds(70, 130, 350, 40);
 		configurarPlaceholder(txtSaldoTC, "Cupo");
 
-		txtPassword = new JTextField();
-		txtPassword.setBounds(70, 200, 350, 40);
-		configurarPlaceholder(txtPassword, "Password");
-
 		btnCreateUser = new JButton("Create User");
 		btnCreateUser.setBounds(190, 270, 120, 20);
 		btnCreateUser.setActionCommand("Create User");
 
 		add(txtUserName);
-		add(txtPassword);
 		add(txtSaldoTC);
 		add(btnCreateUser);
 	}
@@ -85,14 +78,6 @@ public class PanelCrearUsuario extends JPanel {
 
 	public void setTxtSaldoTC(JTextField txtSaldoTC) {
 		this.txtSaldoTC = txtSaldoTC;
-	}
-
-	public JTextField getTxtPassword() {
-		return txtPassword;
-	}
-
-	public void setTxtPassword(JTextField txtPassword) {
-		this.txtPassword = txtPassword;
 	}
 
 	public JButton getBtnCreateUser() {

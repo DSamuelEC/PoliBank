@@ -5,27 +5,26 @@ import java.util.ArrayList;
 
 import co.edu.unbosque.model.Usuario;
 
-
-public class AdminDAO implements InterfaceDAO<Usuario>{
+public class BankDAO implements InterfaceDAO<Usuario> {
 
 	private ArrayList<Usuario> datos;
 	private Archivo archivo;
-	
-	public AdminDAO() {
+
+	public BankDAO() {
 		datos = new ArrayList<Usuario>();
 		archivo = new Archivo();
 	}
-	
+
 	public void actualizarBD() {
 		datos = archivo.leerArchivo();
 	}
-	
+
 	@Override
 	public String getAll() {
 		String rta = "";
 		datos = archivo.leerArchivo();
-		if(!datos.isEmpty()) {
-			for(Usuario x : datos) {
+		if (!datos.isEmpty()) {
+			for (Usuario x : datos) {
 				rta += x + "\n";
 			}
 		}
@@ -34,7 +33,7 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 
 	@Override
 	public boolean add(Usuario x) {
-		if(find(x) == null) {
+		if (find(x) == null) {
 			datos.add(x);
 			archivo.escribirArchivo(datos);
 			return true;
@@ -45,14 +44,14 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 	@Override
 	public boolean delete(Usuario x) {
 		Usuario y = find(x);
-		if(y != null) {
+		if (y != null) {
 			try {
 				datos.remove(y);
 				archivo.getUbicacionArchivo().delete();
 				archivo.getUbicacionArchivo().createNewFile();
 				archivo.escribirArchivo(datos);
 				return true;
-			}catch (IOException e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 				return false;
 			}
@@ -63,7 +62,7 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 	@Override
 	public boolean update(Usuario x, Usuario y) {
 		Usuario e = find(x);
-		if(e != null) {
+		if (e != null) {
 			datos.remove(e);
 			e.setParejas(y.getParejas());
 			datos.add(e);
@@ -75,15 +74,13 @@ public class AdminDAO implements InterfaceDAO<Usuario>{
 	@Override
 	public Usuario find(Usuario x) {
 		Usuario encontrado = null;
-		if(!datos.isEmpty()) {
-			for(Usuario y : datos) {
-				if( y.getParejas().equals(x.getParejas())) {
+		if (!datos.isEmpty()) {
+			for (Usuario y : datos) {
+				if (y.getParejas().equals(x.getParejas())) {
 					encontrado = y;
 				}
 			}
 		}
-		
 		return encontrado;
 	}
-
 }

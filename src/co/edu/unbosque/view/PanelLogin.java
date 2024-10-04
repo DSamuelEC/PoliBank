@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PanelLogin extends JPanel {
-	private JTextField txtUserName, txtPassword;
+	private JTextField txtUserName;
 	private JButton btnCreateUser, btnSubmit;
 
 	public PanelLogin() {
@@ -25,9 +25,6 @@ public class PanelLogin extends JPanel {
 		txtUserName.setBounds(30, 100, 420, 40);
 		configurarPlaceholder(txtUserName, "UserName");
 
-		txtPassword = new JTextField();
-		txtPassword.setBounds(30, 170, 420, 40);
-		configurarPlaceholder(txtPassword, "Password");
 
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setActionCommand("Sumbit Login");
@@ -38,7 +35,6 @@ public class PanelLogin extends JPanel {
 		btnCreateUser.setBounds(250, 240, 200, 40);
 
 		add(txtUserName);
-		add(txtPassword);
 		add(btnSubmit);
 		add(btnCreateUser);
 	}
@@ -75,14 +71,6 @@ public class PanelLogin extends JPanel {
 
 	public void setTxtUserName(JTextField txtUserName) {
 		this.txtUserName = txtUserName;
-	}
-
-	public JTextField getTxtPassword() {
-		return txtPassword;
-	}
-
-	public void setTxtPassword(JTextField txtPassword) {
-		this.txtPassword = txtPassword;
 	}
 
 	public JButton getBtnCreateUser() {
