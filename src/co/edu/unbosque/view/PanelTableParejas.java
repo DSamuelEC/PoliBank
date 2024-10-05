@@ -1,37 +1,53 @@
 package co.edu.unbosque.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.*;
 
-public class PanelTableParejas extends JPanel{
+public class PanelTableParejas extends JPanel {
 
-	private JTable tableParejas;
+	private JTextArea txaParejas;
+	private JScrollPane scrollPanel;
 
-		public PanelTableParejas() {
-			setLayout(null);
-			setBackground(new Color(255, 255, 255));
-			inicializarComponentes();
-			setVisible(true);
-		}
-
-		private void inicializarComponentes() {
-			tableParejas = new JTable();
-			JScrollPane scrollPanel = new JScrollPane(tableParejas);
-			scrollPanel.setBounds(8, 150, 470, 180);
-			scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-			scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-		}
-
-		public JTable getTableParejas() {
-			return tableParejas;
-		}
-
-		public void setTableParejas(JTable tableParejas) {
-			this.tableParejas = tableParejas;
-		}
-
-		
+	public PanelTableParejas() {
+		setLayout(new BorderLayout());
+		setBackground(new Color(255, 255, 255));
+		inicializarComponentes();
+		setVisible(true);
 	}
 
+	private void inicializarComponentes() {
+		txaParejas = new JTextArea();
+		txaParejas.setEditable(false); // En false hace que el JTextArea no sea editable
+		txaParejas.setLineWrap(true); // Ajusta el texto automáticamente
+
+//		scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+//		scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+		scrollPanel = new JScrollPane(txaParejas);
+		add(scrollPanel, BorderLayout.CENTER);
+	}
+
+	public void cargarParejas(String[] parejas) {
+		for (String pareja : parejas) {
+			txaParejas.append(pareja + "\n");
+		}
+	}
+
+	public JTextArea getTxaParejas() {
+		return txaParejas;
+	}
+
+	public void setTxaParejas(JTextArea txaParejas) {
+		this.txaParejas = txaParejas;
+	}
+
+	public JScrollPane getScrollPanel() {
+		return scrollPanel;
+	}
+
+	public void setScrollPanel(JScrollPane scrollPanel) {
+		this.scrollPanel = scrollPanel;
+	}
+}

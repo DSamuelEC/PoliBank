@@ -44,11 +44,6 @@ public class Bank {
 		bankDAO.actualizarBD();
 	}
 
-//	public Usuario find(UsuarioDTO userDTO) {
-//		Usuario user = MapHandler.convertirUsuarioDTOtoUsuario(userDTO);
-//		return bankDAO.find(user.getNombreUsuario());
-//	}
-
 	public Usuario find(String name) {
 		return bankDAO.find(name);
 	}

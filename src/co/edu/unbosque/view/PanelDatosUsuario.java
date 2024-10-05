@@ -16,10 +16,10 @@ public class PanelDatosUsuario extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		JLabel lblUserName = new JLabel("Usuario: ");
+		lblUserName = new JLabel("Usuario: ");
 		lblUserName.setBounds(5, 1, 120, 25);
 
-		JLabel lblCupoUsuario = new JLabel("Cupo: ");
+		lblCupoUsuario = new JLabel("Cupo: ");
 		lblCupoUsuario.setBounds(270, 1, 120, 25);
 
 		add(lblCupoUsuario);
