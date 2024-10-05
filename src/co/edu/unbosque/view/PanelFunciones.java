@@ -5,13 +5,13 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.*;
 
-public class Funciones extends JPanel {
+public class PanelFunciones extends JPanel {
 	
 	private JTextField txtLoverName;
 	private JTextField txtSaldoTC;
 	private JButton btnSubmit;
 
-	public Funciones() {
+	public PanelFunciones() {
 		setLayout(null);
 		setBackground(new Color(183, 210, 255));
 

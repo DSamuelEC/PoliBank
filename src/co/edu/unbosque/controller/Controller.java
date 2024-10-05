@@ -23,9 +23,7 @@ public class Controller implements ActionListener {
 			loginCreateBtn();
 		});
 		ventanaP.getpLogin().getBtnSubmit().addActionListener(e -> {
-			ventanaP.getpLogin().setVisible(false);
-			ventanaP.getpHomeUser().setVisible(true);
-
+			submitLogin();
 		});
 		ventanaP.getpCrearUsuario().getBtnCreateUser().addActionListener(e -> {
 			capturarDatosLogin();
@@ -71,6 +69,14 @@ public class Controller implements ActionListener {
 		bank = new Bank();
 		bank.actualizarBD();
 		System.out.println(bank.getBankDAO());
+	}
+	
+	public void submitLogin() {
+		String nombre = ventanaP.getpLogin().getTxtUserName().getText();
+		bank.find(nombre);
+		ventanaP.getpLogin().setVisible(false);
+		ventanaP.getpHomeUser().setVisible(true);
+		ventanaP.getpHomeUser();
 	}
 
 	public void loginCreateBtn() {

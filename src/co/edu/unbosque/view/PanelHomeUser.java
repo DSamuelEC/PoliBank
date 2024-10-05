@@ -7,6 +7,7 @@ public class PanelHomeUser extends JPanel {
 	private JButton btnAgregarPareja, btnActualizarPareja, btnEliminarPareja, btnSalir, btnVerTodo;
 	private JTextField txtAliasPareja, txtCupoPareja;
 	private JTable tableParejas;
+	private PanelDatosUsuario pDatosUsuario;
 
 	public PanelHomeUser() {
 		setLayout(null);
@@ -16,20 +17,9 @@ public class PanelHomeUser extends JPanel {
 	}
 
 	private void inicializarComponentes() {
+		pDatosUsuario = new PanelDatosUsuario();
+		pDatosUsuario.setBounds(8, 10, 470, 24);
 
-		JPanel Usuario = new JPanel(null);
-		Usuario.setBounds(8, 10, 470, 24);
-		Usuario.setBackground(new Color(200, 200, 255));
-
-		JLabel lblUserName = new JLabel("Usuario: ");
-		lblUserName.setBounds(5, 1, 120, 25);
-
-		JLabel lblCupoUsuario = new JLabel("Cupo: ");
-		lblCupoUsuario.setBounds(270, 1, 120, 25);
-
-		Usuario.add(lblCupoUsuario);
-		Usuario.add(lblUserName);
-//xd
 		// Panel para agregar nueva pareja
 		JPanel panelFormularioParejas = new JPanel(null);
 		panelFormularioParejas.setBounds(8, 42, 470, 100);
@@ -54,14 +44,12 @@ public class PanelHomeUser extends JPanel {
 		panelFormularioParejas.add(txtCupoPareja);
 		panelFormularioParejas.add(btnAgregarPareja);
 
-		
 		// Tabla para mostrar las parejas
 		tableParejas = new JTable();
 		JScrollPane scrollPanel = new JScrollPane(tableParejas);
 		scrollPanel.setBounds(8, 150, 470, 180);
 		scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
 
 		// Panel para botones
 		JPanel panelBotones = new JPanel(null);
@@ -83,7 +71,7 @@ public class PanelHomeUser extends JPanel {
 
 		add(panelFormularioParejas);
 		add(panelBotones);
-		add(Usuario);
+		add(pDatosUsuario);
 		add(scrollPanel);
 	}
 
@@ -151,4 +139,11 @@ public class PanelHomeUser extends JPanel {
 		this.tableParejas = tableParejas;
 	}
 
+	public PanelDatosUsuario getpDatosUsuario() {
+		return pDatosUsuario;
+	}
+
+	public void setpDatosUsuario(PanelDatosUsuario pDatosUsuario) {
+		this.pDatosUsuario = pDatosUsuario;
+	}
 }

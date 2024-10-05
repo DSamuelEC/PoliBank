@@ -17,7 +17,7 @@ public class Bank {
 
 	public boolean adicionarUsuario(UsuarioDTO userDTO) {
 		Usuario nuevoUsuario = MapHandler.convertirUsuarioDTOtoUsuario(userDTO);
-		Usuario usuarioExistente = bankDAO.find(nuevoUsuario);
+		Usuario usuarioExistente = bankDAO.find(nuevoUsuario.getNombreUsuario());
 		if (usuarioExistente != null) {
 			System.out.println("Ya existe un cliente con ese nombre");
 			return false;
@@ -44,9 +44,13 @@ public class Bank {
 		bankDAO.actualizarBD();
 	}
 
-	public Usuario find(UsuarioDTO userDTO) {
-		Usuario user = MapHandler.convertirUsuarioDTOtoUsuario(userDTO);
-		return bankDAO.find(user);
+//	public Usuario find(UsuarioDTO userDTO) {
+//		Usuario user = MapHandler.convertirUsuarioDTOtoUsuario(userDTO);
+//		return bankDAO.find(user.getNombreUsuario());
+//	}
+
+	public Usuario find(String name) {
+		return bankDAO.find(name);
 	}
 
 	public ArrayList<Usuario> getClientes() {

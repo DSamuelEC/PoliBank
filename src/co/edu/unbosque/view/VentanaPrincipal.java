@@ -6,7 +6,7 @@ public class VentanaPrincipal extends JFrame {
 
 	private PanelLogin pLogin;
 	private PanelCrearUsuario pCrearUsuario;
-	private Funciones pFunciones;
+	private PanelFunciones pFunciones;
 	private PanelHomeUser pHomeUser;
 
 	public VentanaPrincipal() {
@@ -32,7 +32,7 @@ public class VentanaPrincipal extends JFrame {
 		pCrearUsuario.setBounds(0, 0, 500, 500);
 		getContentPane().add(pCrearUsuario);
 
-		pFunciones = new Funciones();
+		pFunciones = new PanelFunciones();
 		pFunciones.setBounds(0, 0, 500, 500);
 		getContentPane().add(pFunciones);
 		
@@ -66,11 +66,11 @@ public class VentanaPrincipal extends JFrame {
 		this.pHomeUser = pHomeUser;
 	}
 
-	public Funciones getpFunciones() {
+	public PanelFunciones getpFunciones() {
 		return pFunciones;
 	}
 
-	public void setpFunciones(Funciones pFunciones) {
+	public void setpFunciones(PanelFunciones pFunciones) {
 		this.pFunciones = pFunciones;
 	}
 

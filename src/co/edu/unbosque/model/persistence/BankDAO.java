@@ -17,9 +17,9 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 
 	public void actualizarBD() {
 		ArrayList<Usuario> usuariosExistentes = archivo.leerArchivo();
-	    if (usuariosExistentes != null) {
-	        datos = usuariosExistentes;
-	    }
+		if (usuariosExistentes != null) {
+			datos = usuariosExistentes;
+		}
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 
 	@Override
 	public boolean add(Usuario x) {
-		if (find(x) == null) {
+		if (find(x.getNombreUsuario()) == null) {
 			datos.add(x);
 			archivo.escribirArchivo(datos);
 			return true;
@@ -46,7 +46,7 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 
 	@Override
 	public boolean delete(Usuario x) {
-		Usuario y = find(x);
+		Usuario y = find(x.getNombreUsuario());
 		if (y != null) {
 			try {
 				datos.remove(y);
@@ -64,7 +64,7 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 
 	@Override
 	public boolean update(Usuario x, Usuario y) {
-		Usuario e = find(x);
+		Usuario e = find(x.getNombreUsuario());
 		if (e != null) {
 			datos.remove(e);
 			e.setParejas(y.getParejas());
@@ -74,13 +74,18 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 		return false;
 	}
 
+	/*
+	 * se usa para el login, este metodo busca si ya existe un usuario con solo el
+	 * nombre lo va a devolver para que ingrese a su cuenta
+	 */
+
 	@Override
-	public Usuario find(Usuario x) {
+	public Usuario find(String name) {
 		Usuario encontrado = null;
 		if (!datos.isEmpty()) {
-			for (Usuario y : datos) {
-				if (y.getParejas().equals(x.getParejas())) {
-					encontrado = y;
+			for (Usuario usuario : datos) {
+				if (usuario.getNombreUsuario().equals(name)) {
+					encontrado = usuario;
 				}
 			}
 		}
