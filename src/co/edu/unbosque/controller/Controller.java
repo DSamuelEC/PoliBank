@@ -70,6 +70,7 @@ public class Controller implements ActionListener {
 	public void run() {
 		bank = new Bank();
 		bank.actualizarBD();
+		System.out.println(bank.getBankDAO());
 	}
 
 	public void loginCreateBtn() {
@@ -95,7 +96,13 @@ public class Controller implements ActionListener {
 		userDTO.setNombreUsuario(nombre);
 		userDTO.setCupoTotal(cupoTotal);
 		userDTO.setParejas(parejas);
-		bank.adicionarUsuario(userDTO);
+		
+		
+		if(bank.adicionarUsuario(userDTO)) {
+			System.out.println("se creo");
+		} else {
+			System.out.println("no se creo");
+		}
 
 		ventanaP.getpCrearUsuario().setVisible(false);
 		ventanaP.getpLogin().setVisible(true);

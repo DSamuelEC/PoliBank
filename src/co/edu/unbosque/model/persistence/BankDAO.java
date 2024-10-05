@@ -16,7 +16,10 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 	}
 
 	public void actualizarBD() {
-		datos = archivo.leerArchivo();
+		ArrayList<Usuario> usuariosExistentes = archivo.leerArchivo();
+	    if (usuariosExistentes != null) {
+	        datos = usuariosExistentes;
+	    }
 	}
 
 	@Override
