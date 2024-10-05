@@ -7,7 +7,7 @@ import javax.swing.*;
 public class PanelBotones extends JPanel {
 	
 
-	private JButton btnAgregarPareja, btnActualizarPareja, btnEliminarPareja, btnSalir, btnVerTodo;
+	private JButton  btnActualizarPareja, btnEliminarPareja, btnSalir, btnVerTodo;
 
 		public PanelBotones() {
 			setLayout(null);
@@ -33,13 +33,7 @@ public class PanelBotones extends JPanel {
 			add(btnVerTodo);
 		}
 
-		public JButton getBtnAgregarPareja() {
-			return btnAgregarPareja;
-		}
-
-		public void setBtnAgregarPareja(JButton btnAgregarPareja) {
-			this.btnAgregarPareja = btnAgregarPareja;
-		}
+		
 
 		public JButton getBtnActualizarPareja() {
 			return btnActualizarPareja;
