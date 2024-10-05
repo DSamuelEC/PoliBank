@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import co.edu.unbosque.model.Bank;
+import co.edu.unbosque.model.Pareja;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.model.persistence.ParejaDTO;
 import co.edu.unbosque.model.persistence.UsuarioDTO;
@@ -77,16 +78,28 @@ public class Controller implements ActionListener {
 
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
-			
+
 			ventanaP.getpHomeUser().getpDatosUsuario().getLblUserName().setText(usuario.getNombreUsuario());
 			ventanaP.getpHomeUser().getpDatosUsuario().getLblCupoUsuario()
 					.setText(String.valueOf("$" + usuario.getTarjetaCredito().getCupoTotal()));
-			
+
 			ventanaP.getpHomeUser().getpTableParejas();
 		} else {
 			System.out.println("No funca pa");
 		}
+	}
 
+	public String[] convertirParejasListtoParejasArray(ArrayList<Pareja> parejasList) {
+		String[] parejasTexto = new String[parejasList.size()];
+		for (int i = 0; i < parejasList.size(); i++) {
+			parejasTexto[i] = parejasList.get(i).toString();
+		}
+
+//		for (Pareja pareja : parejasList) {
+//			pareja.getAlias();
+//			pareja.getCupoAsignado();
+//		}
+		return parejasTexto;
 	}
 
 	public void loginCreateBtn() {
