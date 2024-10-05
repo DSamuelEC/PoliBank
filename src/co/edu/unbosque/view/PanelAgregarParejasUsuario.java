@@ -6,7 +6,8 @@ import javax.swing.*;
 
 public class PanelAgregarParejasUsuario extends JPanel {
 
-	private JLabel lblUserName, lblCupoUsuario;
+	private JButton btnAgregarPareja;
+	private JTextField txtAliasPareja, txtCupoPareja;
 
 	public PanelAgregarParejasUsuario() {
 		setLayout(null);
@@ -16,30 +17,49 @@ public class PanelAgregarParejasUsuario extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		JLabel lblUserName = new JLabel("Usuario: ");
-		lblUserName.setBounds(5, 1, 120, 25);
+		JLabel lblAlias = new JLabel("Alias de la Pareja:");
+		lblAlias.setBounds(10, 10, 120, 25);
+		txtAliasPareja = new JTextField(15);
+		txtAliasPareja.setBounds(140, 10, 150, 25);
 
-		JLabel lblCupoUsuario = new JLabel("Cupo: ");
-		lblCupoUsuario.setBounds(270, 1, 120, 25);
+		JLabel lblCupo = new JLabel("Cupo en Dólares:");
+		lblCupo.setBounds(10, 40, 120, 25);
+		txtCupoPareja = new JTextField(5);
+		txtCupoPareja.setBounds(140, 40, 150, 25);
 
-		add(lblCupoUsuario);
-		add(lblUserName);
+		btnAgregarPareja = new JButton("Agregar Pareja");
+		btnAgregarPareja.setBounds(300, 10, 160, 25);
 
+		add(lblAlias);
+		add(txtAliasPareja);
+		add(lblCupo);
+		add(txtCupoPareja);
+		add(btnAgregarPareja);
 	}
 
-	public JLabel getLblUserName() {
-		return lblUserName;
+	public JButton getBtnAgregarPareja() {
+		return btnAgregarPareja;
 	}
 
-	public void setLblUserName(JLabel lblUserName) {
-		this.lblUserName = lblUserName;
+	public void setBtnAgregarPareja(JButton btnAgregarPareja) {
+		this.btnAgregarPareja = btnAgregarPareja;
 	}
 
-	public JLabel getLblCupoUsuario() {
-		return lblCupoUsuario;
+	public JTextField getTxtAliasPareja() {
+		return txtAliasPareja;
 	}
 
-	public void setLblCupoUsuario(JLabel lblCupoUsuario) {
-		this.lblCupoUsuario = lblCupoUsuario;
+	public void setTxtAliasPareja(JTextField txtAliasPareja) {
+		this.txtAliasPareja = txtAliasPareja;
 	}
+
+	public JTextField getTxtCupoPareja() {
+		return txtCupoPareja;
+	}
+
+	public void setTxtCupoPareja(JTextField txtCupoPareja) {
+		this.txtCupoPareja = txtCupoPareja;
+	}
+
+	
 }
