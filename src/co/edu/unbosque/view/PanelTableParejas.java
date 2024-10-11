@@ -28,6 +28,10 @@ public class PanelTableParejas extends JPanel {
 		scrollPanel = new JScrollPane(txaParejas);
 		add(scrollPanel, BorderLayout.CENTER);
 	}
+	
+	public void limpiarArea() {
+		txaParejas.setText("");
+	}
 
 	public void cargarParejas(String[] parejas) {
 		for (String pareja : parejas) {

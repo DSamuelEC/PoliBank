@@ -21,7 +21,7 @@ public class PanelBotones extends JPanel {
 		btnActualizarPareja.setBounds(5, 10, 150, 25);
 		btnEliminarPareja = new JButton("Eliminar Pareja");
 		btnEliminarPareja.setBounds(165, 10, 150, 25);
-		btnVerTodo = new JButton("Ver Todo");
+		btnVerTodo = new JButton("Refresh");
 		btnVerTodo.setBounds(325, 10, 140, 25);
 		btnSalir = new JButton("Salir");
 		btnSalir.setBounds(165, 50, 150, 25);

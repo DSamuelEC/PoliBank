@@ -6,10 +6,9 @@ import java.awt.event.FocusListener;
 import javax.swing.*;
 
 public class PanelFunciones extends JPanel {
-	
-	private JTextField txtLoverName;
-	private JTextField txtSaldoTC;
-	private JButton btnSubmit;
+
+	private JTextField txtLoverName, txtSaldoTC;
+	private JButton btnSubmit, btnAtras;
 
 	public PanelFunciones() {
 		setLayout(null);
@@ -23,19 +22,26 @@ public class PanelFunciones extends JPanel {
 	public void inicializarComponentes() {
 		txtLoverName = new JTextField();
 		txtLoverName.setBounds(70, 130, 350, 40);
+//		txtLoverName.setName("campoNombrePareja");
 		configurarPlaceholder(txtLoverName, "LoverName");
 
 		txtSaldoTC = new JTextField();
 		txtSaldoTC.setBounds(70, 200, 350, 40);
+//		txtSaldoTC.setName("campoCupoPareja");
 		configurarPlaceholder(txtSaldoTC, "Saldo");
 
 		btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(190, 270, 120, 20);
+		btnSubmit.setBounds(270, 270, 120, 20);
 		btnSubmit.setActionCommand("Submit");
+		
+		btnAtras = new JButton("Atras");
+		btnAtras.setBounds(90, 270, 120, 20);
+		btnSubmit.setActionCommand("Atras");
 
 		add(txtLoverName);
 		add(txtSaldoTC);
 		add(btnSubmit);
+		add(btnAtras);
 	}
 
 	private void configurarPlaceholder(JTextField textField, String placeholder) {
@@ -63,7 +69,7 @@ public class PanelFunciones extends JPanel {
 			}
 		});
 	}
-	
+
 	public JTextField getTxtLoverName() {
 		return txtLoverName;
 	}
@@ -88,4 +94,11 @@ public class PanelFunciones extends JPanel {
 		this.btnSubmit = btnSubmit;
 	}
 
+	public JButton getBtnAtras() {
+		return btnAtras;
+	}
+
+	public void setBtnAtras(JButton btnAtras) {
+		this.btnAtras = btnAtras;
+	}
 }

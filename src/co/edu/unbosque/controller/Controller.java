@@ -37,19 +37,21 @@ public class Controller implements ActionListener {
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnActualizarPareja().addActionListener(e -> {
 			generarCambioVentana("actualizar");
-//			cambiosPareja("actualizar");
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnEliminarPareja().addActionListener(e -> {
 			generarCambioVentana("eliminar");
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnVerTodo().addActionListener(e -> {
-			//debe cargar todas las parejas
+			refresh();
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnSalir().addActionListener(e -> {
-			//debe salir al menú, seteando el usuario del banko en null
+			cerrarSesion();
 		});
 		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
 			cambiosPareja(cambio);
+		});
+		ventanaP.getpFunciones().getBtnAtras().addActionListener(e -> {
+			atras();
 		});
 	}
 
@@ -61,6 +63,24 @@ public class Controller implements ActionListener {
 
 	public void run() {
 		bank.actualizarBD();
+	}
+	
+	public void cerrarSesion() {
+		ventanaP.getpHomeUser().setVisible(false);
+		ventanaP.getpLogin().setVisible(true);
+		bank.setUsuario(null);
+		run();
+	}
+
+	public void atras() {
+		ventanaP.getpFunciones().setVisible(false);
+		ventanaP.getpHomeUser().setVisible(true);
+	}
+
+	public void refresh() {
+		ventanaP.getpHomeUser().getpTableParejas().limpiarArea();
+		ventanaP.getpHomeUser().getpTableParejas()
+				.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
 	}
 
 	public void generarCambioVentana(String comando) {
@@ -88,11 +108,22 @@ public class Controller implements ActionListener {
 			bank.actualizarPareja(nombre, cupoTotal);
 			ventanaP.getpFunciones().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
+
+			ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
+			ventanaP.getpHomeUser().getpTableParejas()
+					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+		
+			
+			ventanaP.getpFunciones().setTxtSaldoTC(null);
 			break;
 		case "eliminar":
 			bank.borrarPareja(nombre, cupoTotal);
 			ventanaP.getpFunciones().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
+
+			ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
+			ventanaP.getpHomeUser().getpTableParejas()
+					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
 			break;
 		default:
 			break;
