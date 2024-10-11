@@ -36,7 +36,7 @@ public class PanelFunciones extends JPanel {
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.setBounds(90, 270, 120, 20);
-		btnSubmit.setActionCommand("Atras");
+		btnAtras.setActionCommand("Atras");
 
 		add(txtLoverName);
 		add(txtSaldoTC);

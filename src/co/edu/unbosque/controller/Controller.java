@@ -32,6 +32,9 @@ public class Controller implements ActionListener {
 		ventanaP.getpCrearUsuario().getBtnCreateUser().addActionListener(e -> {
 			capturarDatosLogin();
 		});
+		ventanaP.getpCrearUsuario().getBtnAtras().addActionListener(e -> {
+			atras("Login");
+		});
 		ventanaP.getpHomeUser().getpAgregarParejasUsuario().getBtnAgregarPareja().addActionListener(e -> {
 			crearPareja();
 		});
@@ -51,7 +54,7 @@ public class Controller implements ActionListener {
 			cambiosPareja(cambio);
 		});
 		ventanaP.getpFunciones().getBtnAtras().addActionListener(e -> {
-			atras();
+			atras("Home");
 		});
 	}
 
@@ -64,7 +67,7 @@ public class Controller implements ActionListener {
 	public void run() {
 		bank.actualizarBD();
 	}
-	
+
 	public void cerrarSesion() {
 		ventanaP.getpHomeUser().setVisible(false);
 		ventanaP.getpLogin().setVisible(true);
@@ -73,9 +76,20 @@ public class Controller implements ActionListener {
 		run();
 	}
 
-	public void atras() {
-		ventanaP.getpFunciones().setVisible(false);
-		ventanaP.getpHomeUser().setVisible(true);
+	public void atras(String ventana) {
+		switch (ventana) {
+		case "Home":
+			ventanaP.getpFunciones().setVisible(false);
+			ventanaP.getpHomeUser().setVisible(true);
+			break;
+		case "Login":
+			ventanaP.getpCrearUsuario().setVisible(false);
+			ventanaP.getpLogin().setVisible(true);
+			break;
+		default:
+			break;
+		}
+
 	}
 
 	public void refresh() {
@@ -113,8 +127,7 @@ public class Controller implements ActionListener {
 			ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
 			ventanaP.getpHomeUser().getpTableParejas()
 					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
-		
-			
+
 			ventanaP.getpFunciones().setTxtSaldoTC(null);
 			break;
 		case "eliminar":

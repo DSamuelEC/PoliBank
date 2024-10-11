@@ -10,7 +10,7 @@ public class PanelCrearUsuario extends JPanel {
 
 	private JTextField txtUserName, txtSaldoTC, txtParejaNombre, txtParejaCupo;
 	private JLabel lblInfo1, lblInfo2;
-	private JButton btnCreateUser;
+	private JButton btnCreateUser, btnAtras;
 
 	public PanelCrearUsuario() {
 		setLayout(null);
@@ -35,18 +35,22 @@ public class PanelCrearUsuario extends JPanel {
 
 		lblInfo2 = new JLabel("Debe ingresar una pareja para buen funcionamiento ");
 		lblInfo2.setBounds(70, 200, 350, 40);
-		
+
 		txtParejaNombre = new JTextField();
-		txtParejaNombre.setBounds(70, 280, 130, 40);
+		txtParejaNombre.setBounds(70, 240, 130, 40);
 		configurarPlaceholder(txtParejaNombre, "Nombre pareja");
-		
+
 		txtParejaCupo = new JTextField();
-		txtParejaCupo.setBounds(210, 280, 130, 40);
-		configurarPlaceholder(txtParejaCupo, "Cupo pareja");	
+		txtParejaCupo.setBounds(210, 240, 130, 40);
+		configurarPlaceholder(txtParejaCupo, "Cupo pareja");
 
 		btnCreateUser = new JButton("Create User");
-		btnCreateUser.setBounds(70, 340, 120, 20);
+		btnCreateUser.setBounds(200, 300, 120, 20);
 		btnCreateUser.setActionCommand("Create User");
+
+		btnAtras = new JButton("Atras");
+		btnAtras.setBounds(70, 300, 120, 20);
+		btnAtras.setActionCommand("Atras");
 
 		add(lblInfo1);
 		add(txtUserName);
@@ -55,6 +59,7 @@ public class PanelCrearUsuario extends JPanel {
 		add(txtParejaNombre);
 		add(txtParejaCupo);
 		add(btnCreateUser);
+		add(btnAtras);
 	}
 
 	private void configurarPlaceholder(JTextField textField, String placeholder) {
@@ -137,5 +142,13 @@ public class PanelCrearUsuario extends JPanel {
 
 	public void setLblInfo2(JLabel lblInfo2) {
 		this.lblInfo2 = lblInfo2;
+	}
+
+	public JButton getBtnAtras() {
+		return btnAtras;
+	}
+
+	public void setBtnAtras(JButton btnAtras) {
+		this.btnAtras = btnAtras;
 	}
 }

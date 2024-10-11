@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PanelLogin extends JPanel {
 	private JTextField txtUserName;
-	
+	private JLabel lblBienvenida;
 	private JButton btnCreateUser, btnSubmit;
 
 	public PanelLogin() {
@@ -22,10 +23,12 @@ public class PanelLogin extends JPanel {
 	}
 
 	private void inicializarComponentes() {
-		txtUserName = new JTextField();
-		txtUserName.setBounds(30, 100, 420, 40);
-		configurarPlaceholder(txtUserName, "UserName");
+		lblBienvenida = new JLabel("Bienvenido a PoliBank, ingrese su nombre");
+		lblBienvenida.setBounds(120, 100, 420, 40);
 
+		txtUserName = new JTextField();
+		txtUserName.setBounds(30, 150, 420, 40);
+		configurarPlaceholder(txtUserName, "UserName");
 
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setActionCommand("Sumbit Login");
@@ -35,6 +38,7 @@ public class PanelLogin extends JPanel {
 		btnCreateUser.setActionCommand("Create User Login");
 		btnCreateUser.setBounds(250, 240, 200, 40);
 
+		add(lblBienvenida);
 		add(txtUserName);
 		add(btnSubmit);
 		add(btnCreateUser);
