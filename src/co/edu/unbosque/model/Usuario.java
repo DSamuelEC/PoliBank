@@ -94,6 +94,12 @@ public class Usuario {
 	public void setParejas(ArrayList<Pareja> parejas) {
 		this.parejas = parejas;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nombreUsuario=" + nombreUsuario + ", tarjetaCredito=" + tarjetaCredito.getCupoTotal() + ", parejas=" + parejas
+				+ "]";
+	}
    
     
     

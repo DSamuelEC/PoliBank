@@ -23,15 +23,8 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 	}
 
 	@Override
-	public String getAll() {
-		String rta = "";
-		datos = archivo.leerArchivo();
-		if (!datos.isEmpty()) {
-			for (Usuario x : datos) {
-				rta += x + "\n";
-			}
-		}
-		return rta;
+	public ArrayList<Usuario> getAll() {
+		return datos;
 	}
 
 	@Override

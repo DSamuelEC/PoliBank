@@ -178,6 +178,7 @@ public class Controller implements ActionListener {
 			vistaE.mostrarInformacion("Ingreso exitoso ADMIN", 0);
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeAdmin().setVisible(true);
+			System.out.println(bank.getClientes().toString());
 			ventanaP.getpHomeAdmin().getpUsuariosAdmin()
 					.cargarUsuarios(convertirUsuariosListtoUsuariosArray(bank.getClientes()));
 		} else {

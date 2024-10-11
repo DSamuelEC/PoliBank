@@ -99,12 +99,13 @@ public class Bank {
 		return bankDAO.update(user1, user2);
 	}
 
-	public String obtenerUsuarios() {
-		return bankDAO.getAll();
+	public void obtenerUsuarios() {
+		clientes = bankDAO.getAll();
 	}
 
 	public void actualizarBD() {
 		bankDAO.actualizarBD();
+		clientes = bankDAO.getAll();
 	}
 
 	public Usuario find(String name) {

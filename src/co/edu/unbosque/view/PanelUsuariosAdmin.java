@@ -39,12 +39,12 @@ public class PanelUsuariosAdmin extends JPanel {
 		}
 	}
 
-	public JTextArea getTxaParejas() {
+	public JTextArea getTxaUsuarios() {
 		return txaUsuarios;
 	}
 
-	public void setTxaParejas(JTextArea txaParejas) {
-		this.txaUsuarios = txaParejas;
+	public void setTxaUsuarios(JTextArea txaUsuarios) {
+		this.txaUsuarios = txaUsuarios;
 	}
 
 	public JScrollPane getScrollPanel() {
