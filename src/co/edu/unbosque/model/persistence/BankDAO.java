@@ -69,6 +69,7 @@ public class BankDAO implements InterfaceDAO<Usuario> {
 			datos.remove(e);
 			e.setParejas(y.getParejas());
 			datos.add(e);
+			archivo.escribirArchivo(datos);
 			return true;
 		}
 		return false;

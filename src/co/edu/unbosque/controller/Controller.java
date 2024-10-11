@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import co.edu.unbosque.model.Bank;
 import co.edu.unbosque.model.Pareja;
-import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.model.persistence.ParejaDTO;
 import co.edu.unbosque.model.persistence.UsuarioDTO;
 import co.edu.unbosque.view.VentanaPrincipal;
@@ -14,9 +13,12 @@ import co.edu.unbosque.view.VentanaPrincipal;
 public class Controller implements ActionListener {
 	private VentanaPrincipal ventanaP;
 	private Bank bank;
+	private String cambio;
 
 	public Controller() {
 		ventanaP = new VentanaPrincipal();
+		bank = new Bank();
+		cambio = "";
 		asignarOyentes();
 	}
 
@@ -31,31 +33,23 @@ public class Controller implements ActionListener {
 			capturarDatosLogin();
 		});
 		ventanaP.getpHomeUser().getpAgregarParejasUsuario().getBtnAgregarPareja().addActionListener(e -> {
-			ventanaP.getpHomeUser().setVisible(false);
-			ventanaP.getpFunciones().setVisible(true);
+			crearPareja();
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnActualizarPareja().addActionListener(e -> {
-			ventanaP.getpHomeUser().setVisible(false);
-			ventanaP.getpFunciones().setVisible(true);
+			generarCambioVentana("actualizar");
+//			cambiosPareja("actualizar");
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnEliminarPareja().addActionListener(e -> {
-			ventanaP.getpHomeUser().setVisible(false);
-			ventanaP.getpFunciones().setVisible(true);
+			generarCambioVentana("eliminar");
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnVerTodo().addActionListener(e -> {
-			ventanaP.getpHomeUser().setVisible(false);
-			ventanaP.getpFunciones().setVisible(true);
+			//debe cargar todas las parejas
 		});
 		ventanaP.getpHomeUser().getpBotones().getBtnSalir().addActionListener(e -> {
-			ventanaP.getpHomeUser().setVisible(false);
-			ventanaP.getpFunciones().setVisible(true);
+			//debe salir al menú, seteando el usuario del banko en null
 		});
 		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
-			ventanaP.getpFunciones().setVisible(false);
-			ventanaP.getpHomeUser().setVisible(true);
-		});
-		ventanaP.getpFunciones().getBtnSubmit().addActionListener(e -> {
-
+			cambiosPareja(cambio);
 		});
 	}
 
@@ -66,24 +60,60 @@ public class Controller implements ActionListener {
 	}
 
 	public void run() {
-		bank = new Bank();
 		bank.actualizarBD();
-		System.out.println(bank.getBankDAO());
+	}
+
+	public void generarCambioVentana(String comando) {
+		ventanaP.getpHomeUser().setVisible(false);
+		ventanaP.getpFunciones().setVisible(true);
+		cambio = comando;
+	}
+
+	public void crearPareja() {
+		String nombre = ventanaP.getpHomeUser().getpAgregarParejasUsuario().getTxtAliasPareja().getText();
+		double cupoTotal = Double
+				.parseDouble(ventanaP.getpHomeUser().getpAgregarParejasUsuario().getTxtCupoPareja().getText());
+		bank.adicionarPareja(nombre, cupoTotal);
+		ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
+		ventanaP.getpHomeUser().getpTableParejas()
+				.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+	}
+
+	public void cambiosPareja(String cambio) {
+		String nombre = ventanaP.getpFunciones().getTxtLoverName().getText();
+		double cupoTotal = Double.parseDouble(ventanaP.getpFunciones().getTxtSaldoTC().getText());
+
+		switch (cambio) {
+		case "actualizar":
+			bank.actualizarPareja(nombre, cupoTotal);
+			ventanaP.getpFunciones().setVisible(false);
+			ventanaP.getpHomeUser().setVisible(true);
+			break;
+		case "eliminar":
+			bank.borrarPareja(nombre, cupoTotal);
+			ventanaP.getpFunciones().setVisible(false);
+			ventanaP.getpHomeUser().setVisible(true);
+			break;
+		default:
+			break;
+		}
+
 	}
 
 	public void submitLogin() {
 		String nombre = ventanaP.getpLogin().getTxtUserName().getText();
-		if (bank.find(nombre) != null) {
-			Usuario usuario = bank.find(nombre);
+		bank.setUsuario(bank.find(nombre));
+		if (bank.getUsuario() != null) {
 
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
 
-			ventanaP.getpHomeUser().getpDatosUsuario().getLblUserName().setText(usuario.getNombreUsuario());
+			ventanaP.getpHomeUser().getpDatosUsuario().getLblUserName().setText(bank.getUsuario().getNombreUsuario());
 			ventanaP.getpHomeUser().getpDatosUsuario().getLblCupoUsuario()
-					.setText(String.valueOf("$" + usuario.getTarjetaCredito().getCupoTotal()));
+					.setText(String.valueOf("$" + bank.getUsuario().getTarjetaCredito().getCupoTotal()));
 
-			ventanaP.getpHomeUser().getpTableParejas();
+			ventanaP.getpHomeUser().getpTableParejas()
+					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
 		} else {
 			System.out.println("No funca pa");
 		}
@@ -94,17 +124,13 @@ public class Controller implements ActionListener {
 		for (int i = 0; i < parejasList.size(); i++) {
 			parejasTexto[i] = parejasList.get(i).toString();
 		}
-
-//		for (Pareja pareja : parejasList) {
-//			pareja.getAlias();
-//			pareja.getCupoAsignado();
-//		}
 		return parejasTexto;
 	}
 
 	public void loginCreateBtn() {
 		ventanaP.getpLogin().setVisible(false);
 		ventanaP.getpCrearUsuario().setVisible(true);
+
 	}
 
 	public void capturarDatosLogin() {

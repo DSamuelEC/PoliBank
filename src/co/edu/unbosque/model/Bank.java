@@ -9,10 +9,75 @@ import co.edu.unbosque.model.persistence.UsuarioDTO;
 public class Bank {
 	private ArrayList<Usuario> clientes;
 	private BankDAO bankDAO;
+	private Usuario usuario;
 
 	public Bank() {
 		clientes = new ArrayList<Usuario>();
 		bankDAO = new BankDAO();
+		usuario = null;
+	}
+
+	public boolean adicionarPareja(String nombrePareja, double cupoPareja) {
+		Pareja pareja = new Pareja(nombrePareja, cupoPareja);
+
+		Usuario usuarioCopia = usuario;
+		usuario.getParejas().add(pareja);
+		System.out.println(bankDAO.update(usuarioCopia, usuario));
+		return bankDAO.update(usuarioCopia, usuario);
+	}
+
+	public Pareja buscarPareja(String accion, String nombrePareja, double cupoPareja) {
+		Pareja parejaEncontrada = null;
+		if (!usuario.getParejas().isEmpty()) {
+			switch (accion) {
+			case "actualizar":
+				for (Pareja parejita : usuario.getParejas()) {
+					if (parejita.getAlias().equals(nombrePareja)) {
+						parejaEncontrada = parejita;
+					}
+				}
+				break;
+			case "borrar":
+				for (Pareja parejita : usuario.getParejas()) {
+					if (parejita.getAlias().equals(nombrePareja) && parejita.getCupoAsignado() == cupoPareja) {
+						parejaEncontrada = parejita;
+					}
+				}
+				break;
+			default:
+				break;
+			}
+
+		}
+		return parejaEncontrada;
+	}
+
+	public boolean actualizarPareja(String nombrePareja, double cupoPareja) {
+		Pareja x = buscarPareja("actualizar", nombrePareja, cupoPareja);
+		if (x != null) {
+			Pareja parejaActualizada = new Pareja(nombrePareja, cupoPareja);
+			Usuario usuarioCopia = usuario;
+
+			usuario.getParejas().remove(x);
+			usuario.getParejas().add(parejaActualizada);
+			System.out.println(bankDAO.update(usuarioCopia, usuario));
+			return bankDAO.update(usuarioCopia, usuario);
+		}
+		System.out.println("No funca paaaa");
+		return false;
+	}
+
+	public boolean borrarPareja(String nombrePareja, double cupoPareja) {
+		Pareja x = buscarPareja("borrar", nombrePareja, cupoPareja);
+		if (x != null) {
+			Usuario usuarioCopia = usuario;
+			usuario.getParejas().remove(x);
+
+			System.out.println(bankDAO.update(usuarioCopia, usuario));
+			return bankDAO.update(usuarioCopia, usuario);
+		}
+		System.out.println("No funca paaaa");
+		return false;
 	}
 
 	public boolean adicionarUsuario(UsuarioDTO userDTO) {
@@ -62,5 +127,13 @@ public class Bank {
 
 	public void setBankDAO(BankDAO bankDAO) {
 		this.bankDAO = bankDAO;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
