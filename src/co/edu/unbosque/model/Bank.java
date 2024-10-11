@@ -63,7 +63,6 @@ public class Bank {
 			System.out.println(bankDAO.update(usuarioCopia, usuario));
 			return bankDAO.update(usuarioCopia, usuario);
 		}
-		System.out.println("No funca paaaa");
 		return false;
 	}
 
@@ -84,7 +83,6 @@ public class Bank {
 		Usuario nuevoUsuario = MapHandler.convertirUsuarioDTOtoUsuario(userDTO);
 		Usuario usuarioExistente = bankDAO.find(nuevoUsuario.getNombreUsuario());
 		if (usuarioExistente != null) {
-			System.out.println("Ya existe un cliente con ese nombre");
 			return false;
 		}
 		return bankDAO.add(nuevoUsuario);

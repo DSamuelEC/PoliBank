@@ -9,14 +9,17 @@ import co.edu.unbosque.model.Pareja;
 import co.edu.unbosque.model.persistence.ParejaDTO;
 import co.edu.unbosque.model.persistence.UsuarioDTO;
 import co.edu.unbosque.view.VentanaPrincipal;
+import co.edu.unbosque.view.VistaVentanasEmergentes;
 
 public class Controller implements ActionListener {
 	private VentanaPrincipal ventanaP;
+	private VistaVentanasEmergentes vistaE;
 	private Bank bank;
 	private String cambio;
 
 	public Controller() {
 		ventanaP = new VentanaPrincipal();
+		vistaE = new VistaVentanasEmergentes();
 		bank = new Bank();
 		cambio = "";
 		asignarOyentes();
@@ -30,7 +33,7 @@ public class Controller implements ActionListener {
 			submitLogin();
 		});
 		ventanaP.getpCrearUsuario().getBtnCreateUser().addActionListener(e -> {
-			capturarDatosLogin();
+			capturarDatosCrearUsuario();
 		});
 		ventanaP.getpCrearUsuario().getBtnAtras().addActionListener(e -> {
 			atras("Login");
@@ -105,39 +108,62 @@ public class Controller implements ActionListener {
 	}
 
 	public void crearPareja() {
-		String nombre = ventanaP.getpHomeUser().getpAgregarParejasUsuario().getTxtAliasPareja().getText();
-		double cupoTotal = Double
-				.parseDouble(ventanaP.getpHomeUser().getpAgregarParejasUsuario().getTxtCupoPareja().getText());
-		bank.adicionarPareja(nombre, cupoTotal);
-		ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
-		ventanaP.getpHomeUser().getpTableParejas()
-				.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+		try {
+			String nombre = ventanaP.getpHomeUser().getpAgregarParejasUsuario().getTxtAliasPareja().getText();
+			double cupoTotal = Double
+					.parseDouble(ventanaP.getpHomeUser().getpAgregarParejasUsuario().getTxtCupoPareja().getText());
+			bank.adicionarPareja(nombre, cupoTotal);
+			ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
+			ventanaP.getpHomeUser().getpTableParejas()
+					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+			vistaE.mostrarInformacion("Pareja creada correctamente", 0);
+		} catch (NumberFormatException e) {
+			vistaE.mostrarInformacion("ERROR: ingreso de cupo no valido", 1);
+		}
 	}
 
 	public void cambiosPareja(String cambio) {
-		String nombre = ventanaP.getpFunciones().getTxtLoverName().getText();
-		double cupoTotal = Double.parseDouble(ventanaP.getpFunciones().getTxtSaldoTC().getText());
+//		String nombre = ventanaP.getpFunciones().getTxtLoverName().getText();
+//		double cupoTotal = Double.parseDouble(ventanaP.getpFunciones().getTxtSaldoTC().getText());
 
 		switch (cambio) {
 		case "actualizar":
-			bank.actualizarPareja(nombre, cupoTotal);
-			ventanaP.getpFunciones().setVisible(false);
-			ventanaP.getpHomeUser().setVisible(true);
+			try {
+				String nombre = ventanaP.getpFunciones().getTxtLoverName().getText();
+				double cupoTotal = Double.parseDouble(ventanaP.getpFunciones().getTxtSaldoTC().getText());
+				if (bank.actualizarPareja(nombre, cupoTotal)) {
+					ventanaP.getpFunciones().setVisible(false);
+					ventanaP.getpHomeUser().setVisible(true);
 
-			ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
-			ventanaP.getpHomeUser().getpTableParejas()
-					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
-
-			ventanaP.getpFunciones().setTxtSaldoTC(null);
+					ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
+					ventanaP.getpHomeUser().getpTableParejas()
+							.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+					vistaE.mostrarInformacion("Pareja actualizada correctamente", 0);
+				} else {
+					vistaE.mostrarInformacion("ERROR: No se pudo actualizar", 1);
+				}
+			} catch (NumberFormatException e) {
+				vistaE.mostrarInformacion("ERROR: ingreso de cupo no valido", 1);
+			}
 			break;
 		case "eliminar":
-			bank.borrarPareja(nombre, cupoTotal);
-			ventanaP.getpFunciones().setVisible(false);
-			ventanaP.getpHomeUser().setVisible(true);
+			try {
+				String nombre = ventanaP.getpFunciones().getTxtLoverName().getText();
+				double cupoTotal = Double.parseDouble(ventanaP.getpFunciones().getTxtSaldoTC().getText());
+				if (bank.borrarPareja(nombre, cupoTotal)) {
+					ventanaP.getpFunciones().setVisible(false);
+					ventanaP.getpHomeUser().setVisible(true);
 
-			ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
-			ventanaP.getpHomeUser().getpTableParejas()
-					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+					ventanaP.getpHomeUser().getpTableParejas().getTxaParejas().append("ACTUALIZACION PAREJAS" + "\n");
+					ventanaP.getpHomeUser().getpTableParejas()
+							.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+					vistaE.mostrarInformacion("Pareja eliminada correctamente", 0);
+				} else {
+					vistaE.mostrarInformacion("ERROR: No se pudo eliminar", 1);
+				}
+			} catch (NumberFormatException e) {
+				vistaE.mostrarInformacion("ERROR: ingreso de cupo no valido", 1);
+			}
 			break;
 		default:
 			break;
@@ -149,7 +175,7 @@ public class Controller implements ActionListener {
 		String nombre = ventanaP.getpLogin().getTxtUserName().getText();
 		bank.setUsuario(bank.find(nombre));
 		if (bank.getUsuario() != null) {
-
+			vistaE.mostrarInformacion("Ingreso exitoso", 0);
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeUser().setVisible(true);
 
@@ -160,7 +186,7 @@ public class Controller implements ActionListener {
 			ventanaP.getpHomeUser().getpTableParejas()
 					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
 		} else {
-			System.out.println("No funca pa");
+			vistaE.mostrarInformacion("Usuario no existe o tipo de dato incorrecto", 1);
 		}
 	}
 
@@ -178,34 +204,35 @@ public class Controller implements ActionListener {
 
 	}
 
-	public void capturarDatosLogin() {
-		String nombre = ventanaP.getpCrearUsuario().getTxtUserName().getText();
-		double cupoTotal = Double.parseDouble(ventanaP.getpCrearUsuario().getTxtSaldoTC().getText());
+	public void capturarDatosCrearUsuario() {
+		try {
+			String nombre = ventanaP.getpCrearUsuario().getTxtUserName().getText();
+			double cupoTotal = Double.parseDouble(ventanaP.getpCrearUsuario().getTxtSaldoTC().getText());
 
-		String nombrePareja = ventanaP.getpCrearUsuario().getTxtParejaNombre().getText();
-		double cupoPareja = Double.parseDouble(ventanaP.getpCrearUsuario().getTxtParejaCupo().getText());
+			String nombrePareja = ventanaP.getpCrearUsuario().getTxtParejaNombre().getText();
+			double cupoPareja = Double.parseDouble(ventanaP.getpCrearUsuario().getTxtParejaCupo().getText());
 
-		UsuarioDTO userDTO = new UsuarioDTO();
-		ParejaDTO parejaDTO = new ParejaDTO();
-		ArrayList<ParejaDTO> parejas = new ArrayList<ParejaDTO>();
+			UsuarioDTO userDTO = new UsuarioDTO();
+			ParejaDTO parejaDTO = new ParejaDTO();
+			ArrayList<ParejaDTO> parejas = new ArrayList<ParejaDTO>();
 
-		parejaDTO.setNombrePareja(nombrePareja);
-		parejaDTO.setCupoAsignado(cupoPareja);
-		parejas.add(parejaDTO);
+			parejaDTO.setNombrePareja(nombrePareja);
+			parejaDTO.setCupoAsignado(cupoPareja);
+			parejas.add(parejaDTO);
 
-		userDTO.setNombreUsuario(nombre);
-		userDTO.setCupoTotal(cupoTotal);
-		userDTO.setParejas(parejas);
+			userDTO.setNombreUsuario(nombre);
+			userDTO.setCupoTotal(cupoTotal);
+			userDTO.setParejas(parejas);
 
-		if (bank.adicionarUsuario(userDTO)) {
-			System.out.println("se creo");
-		} else {
-			System.out.println("no se creo");
+			if (bank.adicionarUsuario(userDTO)) {
+				vistaE.mostrarInformacion("Usuario creado con exito, por favor logueese", 0);
+				ventanaP.getpCrearUsuario().setVisible(false);
+				ventanaP.getpLogin().setVisible(true);
+			} else {
+				vistaE.mostrarInformacion("ERROR: Ya existe un cliente con ese nombre", 1);
+			}
+		} catch (NumberFormatException e) {
+			vistaE.mostrarInformacion("ERROR: ingreso de cupo no valido", 1);
 		}
-
-		ventanaP.getpCrearUsuario().setVisible(false);
-		ventanaP.getpLogin().setVisible(true);
-
-		System.out.println(userDTO);
 	}
 }
