@@ -124,9 +124,6 @@ public class Controller implements ActionListener {
 	}
 
 	public void cambiosPareja(String cambio) {
-//		String nombre = ventanaP.getpFunciones().getTxtLoverName().getText();
-//		double cupoTotal = Double.parseDouble(ventanaP.getpFunciones().getTxtSaldoTC().getText());
-
 		switch (cambio) {
 		case "actualizar":
 			try {
