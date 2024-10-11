@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 public class PanelLogin extends JPanel {
 	private JTextField txtUserName;
+	
 	private JButton btnCreateUser, btnSubmit;
 
 	public PanelLogin() {

@@ -68,6 +68,7 @@ public class Controller implements ActionListener {
 	public void cerrarSesion() {
 		ventanaP.getpHomeUser().setVisible(false);
 		ventanaP.getpLogin().setVisible(true);
+		ventanaP.getpHomeUser().getpTableParejas().limpiarArea();
 		bank.setUsuario(null);
 		run();
 	}
