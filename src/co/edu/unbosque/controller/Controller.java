@@ -173,20 +173,29 @@ public class Controller implements ActionListener {
 
 	public void submitLogin() {
 		String nombre = ventanaP.getpLogin().getTxtUserName().getText();
-		bank.setUsuario(bank.find(nombre));
-		if (bank.getUsuario() != null) {
-			vistaE.mostrarInformacion("Ingreso exitoso", 0);
+		System.out.println(nombre);
+		if (nombre == "ADMIN") {
+			System.out.println("aDMIIIN");
+			vistaE.mostrarInformacion("Ingreso exitoso ADMIN", 0);
 			ventanaP.getpLogin().setVisible(false);
-			ventanaP.getpHomeUser().setVisible(true);
-
-			ventanaP.getpHomeUser().getpDatosUsuario().getLblUserName().setText(bank.getUsuario().getNombreUsuario());
-			ventanaP.getpHomeUser().getpDatosUsuario().getLblCupoUsuario()
-					.setText(String.valueOf("$" + bank.getUsuario().getTarjetaCredito().getCupoTotal()));
-
-			ventanaP.getpHomeUser().getpTableParejas()
-					.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+			ventanaP.getpHomeAdmin().setVisible(true);
 		} else {
-			vistaE.mostrarInformacion("Usuario no existe o tipo de dato incorrecto", 1);
+			bank.setUsuario(bank.find(nombre));
+			if (bank.getUsuario() != null) {
+				vistaE.mostrarInformacion("Ingreso exitoso", 0);
+				ventanaP.getpLogin().setVisible(false);
+				ventanaP.getpHomeUser().setVisible(true);
+
+				ventanaP.getpHomeUser().getpDatosUsuario().getLblUserName()
+						.setText(bank.getUsuario().getNombreUsuario());
+				ventanaP.getpHomeUser().getpDatosUsuario().getLblCupoUsuario()
+						.setText(String.valueOf("$" + bank.getUsuario().getTarjetaCredito().getCupoTotal()));
+
+				ventanaP.getpHomeUser().getpTableParejas()
+						.cargarParejas(convertirParejasListtoParejasArray(bank.getUsuario().getParejas()));
+			} else {
+				vistaE.mostrarInformacion("Usuario no existe o tipo de dato incorrecto", 1);
+			}
 		}
 	}
 
