@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import co.edu.unbosque.model.Bank;
 import co.edu.unbosque.model.Pareja;
+import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.model.persistence.ParejaDTO;
 import co.edu.unbosque.model.persistence.UsuarioDTO;
 import co.edu.unbosque.view.VentanaPrincipal;
@@ -173,12 +174,12 @@ public class Controller implements ActionListener {
 
 	public void submitLogin() {
 		String nombre = ventanaP.getpLogin().getTxtUserName().getText();
-		System.out.println(nombre);
-		if (nombre == "ADMIN") {
-			System.out.println("aDMIIIN");
+		if (nombre.equals("ADMIN")) {
 			vistaE.mostrarInformacion("Ingreso exitoso ADMIN", 0);
 			ventanaP.getpLogin().setVisible(false);
 			ventanaP.getpHomeAdmin().setVisible(true);
+			ventanaP.getpHomeAdmin().getpUsuariosAdmin()
+					.cargarUsuarios(convertirUsuariosListtoUsuariosArray(bank.getClientes()));
 		} else {
 			bank.setUsuario(bank.find(nombre));
 			if (bank.getUsuario() != null) {
@@ -197,6 +198,14 @@ public class Controller implements ActionListener {
 				vistaE.mostrarInformacion("Usuario no existe o tipo de dato incorrecto", 1);
 			}
 		}
+	}
+
+	public String[] convertirUsuariosListtoUsuariosArray(ArrayList<Usuario> usuariosList) {
+		String[] usuarioTexto = new String[usuariosList.size()];
+		for (int i = 0; i < usuariosList.size(); i++) {
+			usuarioTexto[i] = usuariosList.get(i).toString();
+		}
+		return usuarioTexto;
 	}
 
 	public String[] convertirParejasListtoParejasArray(ArrayList<Pareja> parejasList) {

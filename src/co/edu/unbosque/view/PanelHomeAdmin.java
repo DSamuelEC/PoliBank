@@ -5,10 +5,6 @@ import java.awt.*;
 
 public class PanelHomeAdmin extends JPanel {
 	
-	
-	private PanelBotones pBotones;
-	private PanelAgregarParejasUsuario pAgregarParejasUsuario;
-	
 	private PanelUsuariosAdmin pUsuariosAdmin;
 	
 
@@ -20,17 +16,18 @@ public class PanelHomeAdmin extends JPanel {
 	}
 
 	private void inicializarComponentes() {	
-		pAgregarParejasUsuario = new PanelAgregarParejasUsuario();
-		pAgregarParejasUsuario.setBounds(8, 42, 470, 100);
 
 		pUsuariosAdmin = new PanelUsuariosAdmin();
 		pUsuariosAdmin.setBounds(8, 150, 470, 180);
-		
-		pBotones = new PanelBotones();
-		pBotones.setBounds(8, 340, 470, 85);
 
-		add(pAgregarParejasUsuario);
-		add(pBotones);
 		add(pUsuariosAdmin);
+	}
+
+	public PanelUsuariosAdmin getpUsuariosAdmin() {
+		return pUsuariosAdmin;
+	}
+
+	public void setpUsuariosAdmin(PanelUsuariosAdmin pUsuariosAdmin) {
+		this.pUsuariosAdmin = pUsuariosAdmin;
 	}
 }
